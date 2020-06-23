@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Spacebin Wiki</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Spacebin Wiki</a></li><li class="chapter-item expanded "><a href="01_guides/index.html"><strong aria-hidden="true">1.</strong> Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_guides/instance_setup.html"><strong aria-hidden="true">1.1.</strong> Instance Setup</a></li></ol></li><li class="chapter-item expanded "><a href="02_server/index.html"><strong aria-hidden="true">2.</strong> Server-related Information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_server/config_options.html"><strong aria-hidden="true">2.1.</strong> Configuration Options</a></li><li class="chapter-item expanded "><a href="02_server/endpoints.html"><strong aria-hidden="true">2.2.</strong> Endpoint Documentation</a></li><li class="chapter-item expanded "><a href="02_server/public_instances.html"><strong aria-hidden="true">2.3.</strong> Public Instances</a></li></ol></li><li class="chapter-item expanded "><a href="known_clients.html"><strong aria-hidden="true">3.</strong> Known Clients</a></li><li class="chapter-item expanded "><a href="03_cli/index.html"><strong aria-hidden="true">4.</strong> CLI Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_cli/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="03_cli/usage.html"><strong aria-hidden="true">4.2.</strong> CLI Usage</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Spacebin Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p align="center">
+  <img
+    width="800"
+    src="https://github.com/spacebin-org/spacebin/blob/master/assets/images/spacebin/icons-large/spacebin-large.png?raw=true"
+    alt="spacebin - text sharing for the final frontier"
+  />
+</p>
+<blockquote>
+<p><strong>Spacebin - Text sharing for the final frontier</strong></p>
+</blockquote>
+<p><strong>Welcome to the official Spacebin wiki.</strong></p>
+<p>This wiki contains a lot of useful information on Spacebin, all of which is listed on the Sidebar.</p>
+<h2><a class="header" href="#what-is-spacebin" id="what-is-spacebin">What is Spacebin?</a></h2>
+<p>Spacebin is a modern pastebin service, built with TypeScript. It is probably the last pastebin you'll ever need.</p>
+<h3><a class="header" href="#what-is-this-wiki" id="what-is-this-wiki">What is this wiki?</a></h3>
+<p>The goal of this wiki is to provide the most up to date and comprehensive information on Spacebin, all in one place.</p>
+<p>It is written in Markdown by the Spacebin team, generated by mdBook and hosted on Github Pages.</p>
+<h3><a class="header" href="#how-spacebin-works" id="how-spacebin-works">How Spacebin works</a></h3>
+<p>When you send a document to a Spacebin server the server generates a unique key for that document and makes the document available to any client accessing the server via the unique key.</p>
+<p>A client can now ask the server for the document by using it's unique key. If the request is performed correctly the server will respond with the document. The client can now display the document's content.</p>
+<h2><a class="header" href="#community" id="community">Community</a></h2>
+<p>There's currently only one platform for our community, that is Discord. You can join our Discord with the following link:</p>
+<ul>
+<li><a href="https://discord.com/invite/hXxBtMJ">Discord</a></li>
+</ul>
+<h2><a class="header" href="#contributing" id="contributing">Contributing</a></h2>
+<p>If you'd like, you can contribute to the Wiki on Github, View the repository <a href="https://github.com/spacebin-org/wiki">here</a>.</p>
+<h2><a class="header" href="#chapter-01--guides" id="chapter-01--guides">Chapter 01 — Guides</a></h2>
+<p>This chapter provides various guides on how to use or a maintain a Spacebin instance.</p>
+<h3><a class="header" href="#pages" id="pages">Pages</a></h3>
+<ul>
+<li><a href="01_guides/./instance_setup.html">Instance Setup</a></li>
+</ul>
+<h1><a class="header" href="#instance-setup" id="instance-setup">Instance Setup</a></h1>
+<blockquote>
+<p>This guide details the very easy process of setting up a Spacebin server instance.</p>
+</blockquote>
+<p>This is a quick guide on how to setup a basic spacebin API instance.</p>
+<h2><a class="header" href="#prerequisites" id="prerequisites"><strong>Prerequisites</strong></a></h2>
+<ul>
+<li>A modern system with decent specifications.</li>
+<li>Git (<a href="https://git-scm.com/downloads">see here</a>).</li>
+<li>Node.js 10, 12, or 14 (<a href="https://nodejs.org/en/download/">see here</a>).</li>
+<li>Yarn. (<code>npm install -g yarn</code>, or <a href="01_guides/classic.yarnpkg.com/en/docs/install">see here</a>)</li>
+<li>A database supported by TypeORM. (MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, Microsoft SQL Server, Oracle DB, SAP Hana, sql.js, MongoDB)</li>
+</ul>
+<h3><a class="header" href="#1-download-the-spacebin-code" id="1-download-the-spacebin-code">1. Download the Spacebin code.</a></h3>
+<pre><code class="language-console">$ git clone https://github.com/spacebin-org/server.git spacebin
+$ cd spacebin
+</code></pre>
+<h3><a class="header" href="#2-configuring-spacebin" id="2-configuring-spacebin">2. Configuring Spacebin.</a></h3>
+<p>The defaults will probably be mostly fine but it's never a bad idea to double check.</p>
+<h3><a class="header" href="#database-setup" id="database-setup">Database Setup</a></h3>
+<blockquote>
+<p>Before continuing you must setup your database. The following instructions explain how:</p>
+</blockquote>
+<p>The database configuration object contain the only required information for configuring your database.</p>
+<p>When configuring, do not change the following values:</p>
+<pre><code class="language-js">{
+  synchronize: false,
+  logging: false,
+  entities: [
+    Document
+  ]
+}
+</code></pre>
+<p>Changing these is either highly unrecommended or <strong>will</strong> break your instance, you almost never need to change them.</p>
+<p>The only values you do need to change are ones related to database authentication. You can view all available connection options on <a href="https://typeorm.io/#/connection-options/postgres--cockroachdb-connection-options">this page of the TypeORM documentation</a>. Simply find the instructions for your database and configure.</p>
+<h3><a class="header" href="#3-installing-packages" id="3-installing-packages">3. Installing packages</a></h3>
+<pre><code class="language-console">$ yarn
+</code></pre>
+<h4><a class="header" href="#31-installing-database-packages" id="31-installing-database-packages">3.1. Installing database packages</a></h4>
+<p>Spacebin doesn't have database packages pre-installed, therefore you must install them before proceeding. They are just NPM packages, nothing special is happening.</p>
+<pre><code class="language-bash">$ yarn add (mongodb | mysql | pg | sqlite3 | mssql | sql.js | oracledb)
+</code></pre>
+<h3><a class="header" href="#5-finishing-off" id="5-finishing-off">5. Finishing off</a></h3>
+<pre><code class="language-console">$ yarn start
+</code></pre>
+<p>After running <code>yarn start</code>, (baring any issues in the installation process) you'll be able to see a Spacebin instance live at your configured URL, by default that's <code>0.0.0.0:7777</code>.</p>
+<h2><a class="header" href="#chapter-02--server-related-information" id="chapter-02--server-related-information">Chapter 02 — Server-related Information</a></h2>
+<p>This section contains lots of information surrounding specifically Spacebin API instances.</p>
+<h3><a class="header" href="#pages-1" id="pages-1">Pages</a></h3>
+<ul>
+<li><a href="02_server/./config_options.html">Configuration Options</a></li>
+<li><a href="02_server/./endpoints.html">Available Endpoints</a></li>
+<li><a href="02_server/./public_instances.html">Public Instances</a></li>
+</ul>
+<h1><a class="header" href="#spacebin-server-configuration-options" id="spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
+<ul>
+<li><code>host (String)</code>: Host address to serve on.</li>
+<li><code>port (Number)</code>: Port number to serve on.</li>
+<li><code>idLength (Number)</code>: Length of Document IDs to generate.</li>
+<li><code>maxDocumentLength (Number)</code>: Max age of documents.</li>
+<li><a href="02_server/config_options.html#database-options"><code>dbOptions</code></a>
+<ul>
+<li>See the <a href="02_server/config_options.html#database-options">&quot;Database Options&quot;</a> section for more information.</li>
+</ul>
+</li>
+<li><a href="02_server/config_options.html#rate-limiting"><code>rateLimits</code></a>
+<ul>
+<li><code>requests (Number)</code></li>
+<li><code>every (Number)</code></li>
+<li>See the <a href="02_server/config_options.html#rate-limiting">&quot;Rate Limiting&quot;</a> section for more information.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#rate-limiting" id="rate-limiting">Rate Limiting</a></h2>
+<p>Spacebin has builtin rate-limiting thanks to <a href="https://github.com/koajs/ratelimit"><code>koa-ratelimit</code></a>.</p>
+<p>We use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><code>Map()</code></a> to store data related to rate limiting. A Redis option may be available in the future.</p>
+<p>There are two options related to configuring <code>koa-ratelimit</code>:</p>
+<ul>
+<li><code>requests (Number)</code>: The number of requests that can be made before rate-limiting takes effect. </li>
+<li><code>every (Number)</code>: A millisecond value that controls how often the rate-limiter will be reset.</li>
+</ul>
+<h2><a class="header" href="#database-options" id="database-options">Database Options</a></h2>
+<p>These are TypeORM configuration options. Usually you will only want to change the ones related to authentication, however due to the current nature of Spacebin's configuration handler you have full access to the TypeORM config through this field.</p>
+<p>The structure of this data must follow that of any TypeORM config, defined <a href="https://typeorm.io/#/connection-options/">here</a>.</p>
+<p><strong>NOTE:</strong> Changing the values <code>synchronize</code>, and <code>entities</code> is highly unrecommended as these options can lead to data-loss or a broken server.</p>
+<h1><a class="header" href="#endpoint-documentation" id="endpoint-documentation">Endpoint Documentation</a></h1>
+<p>Every endpoint on a standard instance is prefixed by <code>/api/v1</code>.</p>
+<p>All requests are JSON, therefore they must all include a <code>Content-Type</code> header with a value of <code>application/json</code>.</p>
+<h2><a class="header" href="#get-documentid" id="get-documentid"><code>GET /document/&lt;id&gt;</code></a></h2>
+<h3><a class="header" href="#request-parameters" id="request-parameters">Request Parameters</a></h3>
+<ul>
+<li><code>id (type: String)</code>
+<ul>
+<li><strong>Description</strong>: ID associated with document.</li>
+<li><strong>Required:</strong> True</li>
+<li><strong>Length:</strong> Set in Config (Default: 12)</li>
+</ul>
+</li>
+</ul>
+<h3><a class="header" href="#response-body" id="response-body">Response Body</a></h3>
+<pre><code class="language-json">{
+	&quot;id&quot;: &quot;...&quot;,
+	&quot;content&quot;: &quot;...&quot;,
+	&quot;dateCreated&quot;: &quot;...&quot;
+}
+</code></pre>
+<ul>
+<li><code>id (type: String)</code>
+<ul>
+<li><strong>Description:</strong> ID associated with document.</li>
+<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
+<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
+</ul>
+</li>
+<li><code>content (type: String)</code>
+<ul>
+<li><strong>Description:</strong> The content of the requested document.</li>
+<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
+<li><strong>Min Length:</strong> 2 chars</li>
+<li><strong>Notes:</strong> New lines are encoded with a <code>\n</code></li>
+</ul>
+</li>
+<li><code>dateCreated (type: String/Date)</code>
+<ul>
+<li><strong>Description:</strong> The timestamp the document was created.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#post-document" id="post-document"><code>POST /document</code></a></h2>
+<h3><a class="header" href="#request-body" id="request-body">Request Body</a></h3>
+<pre><code class="language-json">{
+	&quot;content&quot;: &quot;...&quot;
+}
+</code></pre>
+<ul>
+<li><code>content (type: String)</code>
+<ul>
+<li><strong>Description:</strong> The content of the requested document.</li>
+<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
+<li><strong>Min Length:</strong> 2 chars</li>
+</ul>
+</li>
+</ul>
+<h3><a class="header" href="#response-body-1" id="response-body-1">Response Body</a></h3>
+<pre><code class="language-json">{
+	&quot;id&quot;: &quot;...&quot;,
+	&quot;content&quot;: &quot;...&quot;
+}
+</code></pre>
+<ul>
+<li><code>id (type: String)</code>
+<ul>
+<li><strong>Description:</strong> Key/id associated with document.</li>
+<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
+</ul>
+</li>
+<li><code>content (type: String)</code>
+<ul>
+<li><strong>Description:</strong> The content of the requested document.</li>
+<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
+<li><strong>Min Length:</strong> 2 chars</li>
+<li><strong>Notes:</strong> New lines are encoded with a <code>\n</code>. Will always be the same as the key parameter in request body.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#post-verify" id="post-verify"><code>POST /verify</code></a></h2>
+<p>Returns status code 200 or 404 depending on if the <code>id</code> parameter exists in the database.</p>
+<h3><a class="header" href="#request-body-1" id="request-body-1">Request Body</a></h3>
+<pre><code class="language-json">{
+	&quot;id&quot;: &quot;...&quot;
+}
+</code></pre>
+<ul>
+<li><code>id (type: String)</code>
+<ul>
+<li><strong>Description:</strong> ID associated with document.</li>
+<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
+<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
+</ul>
+</li>
+</ul>
+<h3><a class="header" href="#response-body-2" id="response-body-2">Response Body</a></h3>
+<p>None.</p>
+<h2><a class="header" href="#post-documentidraw" id="post-documentidraw"><code>POST /document/&lt;id&gt;/raw</code></a></h2>
+<p>Returns the Plain Text content of a document object with the id <code>&lt;id&gt;</code></p>
+<h3><a class="header" href="#request-parameters-1" id="request-parameters-1">Request Parameters</a></h3>
+<ul>
+<li><code>id (type: String)</code>
+<ul>
+<li><strong>Description:</strong> ID associated with document.</li>
+<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
+<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
+</ul>
+</li>
+</ul>
+<h3><a class="header" href="#response-body-3" id="response-body-3">Response Body</a></h3>
+<p>Returns the <code>Plain Text</code> variant of a document's content field.</p>
+<h1><a class="header" href="#public-instances" id="public-instances">Public Instances</a></h1>
+<p>If you have an instance you'd like listed here, please contact the Team via our <a href="https://discord.gg/zsxwgYc">Discord</a> and we'll try to get back to you in a timely matter!</p>
+<h2><a class="header" href="#spacebin" id="spacebin"><code>spaceb.in</code></a></h2>
+<p>This is the main public instance and is maintained by the Spacebin team.</p>
+<p>This instance is hosted on <strong>Hetzner Online GmbH</strong>'s infrastructure in Falkenstein, Germany. Consequently you must conform to all German laws (including the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>), and all Hetzner policies. </p>
+<p>All data violating these laws/policies will be swiftly removed from our services after being reported.</p>
+<h3><a class="header" href="#service-rules" id="service-rules">Service Rules</a></h3>
+<p><strong>The rules of the service are as follows:</strong></p>
+<ul>
+<li>No illegal, harmful, offensive, or fraudulent content.</li>
+<li>No copyrighted content or content that misappropriates the IP of others.</li>
+<li>No viruses/malware/computer harming things.</li>
+<li>No jail bait.</li>
+</ul>
+<h3><a class="header" href="#contacting" id="contacting">Contacting</a></h3>
+<p>This instance is operated solely by the Spacebin team. Currently we do not have a team email, so if you need to contact us please email <code>lukewhrit@gmail.com</code> (Faster for takedowns.) or <code>hello@puggo.space</code>.</p>
+<h3><a class="header" href="#other-notes" id="other-notes">Other notes</a></h3>
+<ul>
+<li>All data runs through Cloudflare.</li>
+<li>This service is rate-limited. If you exceed 500 requests in 1 minute you will be blocked from using the service until 1 minute passes.</li>
+<li>Uptime is not guaranteed, we do however make a promise of stability on Spacebin and we hope we can uphold that promise to the fullest.</li>
+<li>To access the API use the <code>api</code> subdomain (<code>api.spaceb.in</code>).</li>
+</ul>
+<h1><a class="header" href="#known-clients" id="known-clients">Known Clients</a></h1>
+<p><strong>This is a list of all known clients that can be used with Spacebin.</strong></p>
+<h2><a class="header" href="#command-line-clients" id="command-line-clients">Command Line Clients</a></h2>
+<table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Platforms</th><th>Description</th><th>Repository</th></tr></thead><tbody>
+<tr><td>Spacebin Team</td><td><code>cli</code></td><td>Yes</td><td><code>*nix</code>, <code>macOS</code></td><td>Fast and recommended terminal client built in Rust</td><td><a href="https://github.com/spacebin-org/cli">View</a></td></tr>
+</tbody></table>
+<h2><a class="header" href="#web-clients" id="web-clients">Web Clients</a></h2>
+<table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Description</th><th>Repository</th></tr></thead><tbody>
+<tr><td>Spacebin Team</td><td><code>polaris</code></td><td>Yes</td><td>Official web client for Spacebin written in Svelte</td><td><a href="https://github.com/spacebin-org/polaris">View</a></td></tr>
+</tbody></table>
+<h2><a class="header" href="#chapter-03--cli-documentation" id="chapter-03--cli-documentation">Chapter 03 — CLI Documentation</a></h2>
+<p>This section covers the <a href="https://github.com/spacebin-org/cli">Spacebin CLI</a>, and provides lots of useful information on the topic.</p>
+<h3><a class="header" href="#pages-2" id="pages-2">Pages</a></h3>
+<ul>
+<li><a href="03_cli/./install.html">Installation</a></li>
+<li><a href="03_cli/./usage.html">Usage</a></li>
+</ul>
+<h1><a class="header" href="#installing-the-cli" id="installing-the-cli">Installing the CLI</a></h1>
+<p>Installing the Spacebin CLI is very easy. You have two options for your install method:</p>
+<ul>
+<li>Via Cargo (Recommended)</li>
+<li>From Source</li>
+</ul>
+<h2><a class="header" href="#installing-via-cargo-recommended" id="installing-via-cargo-recommended">Installing via Cargo (Recommended)</a></h2>
+<p><strong>Requires:</strong></p>
+<ul>
+<li>Rust tool chain</li>
+</ul>
+<p>Simply type the following:</p>
+<pre><code class="language-console">$ cargo install spacebin-cli
+</code></pre>
+<p>After running, (providing everything went correctly) the Spacebin CLI will now be available in your terminal under <code>space</code>. Feel free to test by running <code>space -v</code>.</p>
+<h2><a class="header" href="#compiling-from-source" id="compiling-from-source">Compiling from source</a></h2>
+<p><strong>Requires:</strong></p>
+<ul>
+<li>Git</li>
+<li>Rust tool chain</li>
+</ul>
+<pre><code class="language-console">$ git clone https://github.com/spacebin-org/cli.git spacebin-cli
+$ cd spacebin-cli
+$ cargo install --path .
+</code></pre>
+<p>When running <code>space -V</code>, you should now get something similar to the following:</p>
+<pre><code>spacebin-cli 0.2.2
+</code></pre>
+<h1><a class="header" href="#spacebin-cli-commands" id="spacebin-cli-commands">Spacebin CLI Commands</a></h1>
+<p><strong>This document covers version <code>0.2.2</code> of the CLI.</strong></p>
+<h2><a class="header" href="#flags" id="flags">Flags</a></h2>
+<ul>
+<li><code>--debug</code>: Debugging features</li>
+<li><code>-h, --help</code>: Prints help information</li>
+<li><code>-V, --version</code>: Prints current version</li>
+</ul>
+<h2><a class="header" href="#options" id="options">Options</a></h2>
+<h3><a class="header" href="#-u---upload-file" id="-u---upload-file"><code>-u, --upload &lt;file&gt;</code></a></h3>
+<p>Path of the file to upload to the configured instance.</p>
+<h3><a class="header" href="#-p---port-port-default-443" id="-p---port-port-default-443"><code>-p, --port &lt;port (default: 443)&gt;</code></a></h3>
+<p>Port on where the server instance is hosted.</p>
+<h3><a class="header" href="#-i---instance-url-default-apispacebin" id="-i---instance-url-default-apispacebin"><code>-i, --instance &lt;url (default: api.spaceb.in)&gt;</code></a></h3>
+<p>Host address on where the server instance is hosted.</p>
+<h3><a class="header" href="#--result-url-url-default-spacebin" id="--result-url-url-default-spacebin"><code>--result-url &lt;url (default: spaceb.in)&gt;</code></a></h3>
+<p>URL returned by the CLI after a successful upload.</p>
+<h3><a class="header" href="#--spinners-true--false-default-true" id="--spinners-true--false-default-true"><code>--spinners &lt;true | false (default: true)&gt;</code></a></h3>
+<p>Controls whether the CLI shows fancy spinners while uploading.</p>
+<h2><a class="header" href="#environment-variables" id="environment-variables">Environment Variables</a></h2>
+<h3><a class="header" href="#spacebin_instance" id="spacebin_instance"><code>SPACEBIN_INSTANCE</code></a></h3>
+<ul>
+<li><strong>CLI Option:</strong> <code>-i, --instance</code></li>
+<li><strong>Default:</strong> <code>api.spaceb.in</code></li>
+</ul>
+<p>Defines the API instance that files will be uploaded to.</p>
+<h3><a class="header" href="#spacebin_result_url" id="spacebin_result_url"><code>SPACEBIN_RESULT_URL</code></a></h3>
+<ul>
+<li><strong>CLI Option:</strong> <code>--result-url</code></li>
+<li><strong>Default</strong>: <code>spaceb.in</code></li>
+</ul>
+<p>Defines the URL that will be returned after a successful upload.</p>
+<h3><a class="header" href="#spacebin_port" id="spacebin_port"><code>SPACEBIN_PORT</code></a></h3>
+<ul>
+<li><strong>CLI Option</strong>: <code>-p, --port</code></li>
+<li><strong>Default:</strong> 443</li>
+</ul>
+<p>Defines the TCP port that <code>space</code> uses when communicating with an instance. </p>
+<h3><a class="header" href="#spacebin_user_spinners" id="spacebin_user_spinners"><code>SPACEBIN_USER_SPINNERS</code></a></h3>
+<ul>
+<li><strong>CLI Option</strong>: <code>--spinners</code></li>
+<li><strong>Default</strong>: <code>true</code></li>
+</ul>
+<p>Changes if the command will display fancy spinners while uploading files.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
