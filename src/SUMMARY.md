@@ -9,3 +9,6 @@
   * [Endpoint Documentation](./02_server/endpoints.md)
   * [Public Instances](./02_server/public_instances.md)
 * [Known Clients](./known_clients.md)
+* [CLI Documentation](./03_cli/index.md)
+  * [Installation](./03_cli/install.md)
+  * [CLI Usage](./03_cli/usage.md)
