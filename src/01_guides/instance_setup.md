@@ -33,7 +33,7 @@ When configuring, do not change the following values:
 
 ```js
 {
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [
     Document
