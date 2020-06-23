@@ -7,17 +7,13 @@
 **Prerequisites**
 
 * [`Rust`](https://www.rust-lang.org/)
-* [`mdBook`](https://crates.io/crates/mdbook)  
+* [`mdBook`](https://crates.io/crates/mdbook)
+* [GNU Make](https://www.gnu.org/software/make/)
 
 ```sh
-# Optionally, clean directories before building
-$ mdbook clean
-
-# For production
-$ mdbook build
-
-# For local development
-$ mdbook serve
+$ make clean # Cleans output directories.
+$ make build # Builds static files for usage in production environments.
+$ make serve # Rebuilds on file change & runs a local server on port 3000. Useful when developing.
 ```
 
 ## Authors
