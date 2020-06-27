@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Spacebin Wiki</a></li><li class="chapter-item expanded "><a href="01_guides/index.html"><strong aria-hidden="true">1.</strong> Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_guides/instance_setup.html"><strong aria-hidden="true">1.1.</strong> Instance Setup</a></li></ol></li><li class="chapter-item expanded "><a href="02_server/index.html"><strong aria-hidden="true">2.</strong> Server-related Information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_server/config_options.html"><strong aria-hidden="true">2.1.</strong> Configuration Options</a></li><li class="chapter-item expanded "><a href="02_server/endpoints.html"><strong aria-hidden="true">2.2.</strong> Endpoint Documentation</a></li><li class="chapter-item expanded "><a href="02_server/public_instances.html"><strong aria-hidden="true">2.3.</strong> Public Instances</a></li></ol></li><li class="chapter-item expanded "><a href="known_clients.html"><strong aria-hidden="true">3.</strong> Known Clients</a></li><li class="chapter-item expanded "><a href="03_cli/index.html"><strong aria-hidden="true">4.</strong> CLI Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_cli/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="03_cli/usage.html"><strong aria-hidden="true">4.2.</strong> CLI Usage</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Spacebin Wiki</a></li><li class="chapter-item expanded "><a href="01_guides/index.html"><strong aria-hidden="true">1.</strong> Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_guides/instance_setup.html"><strong aria-hidden="true">1.1.</strong> Instance Setup</a></li></ol></li><li class="chapter-item expanded "><a href="02_server/index.html"><strong aria-hidden="true">2.</strong> Server-related Information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_server/config_options.html"><strong aria-hidden="true">2.1.</strong> Configuration Options</a></li><li class="chapter-item expanded "><a href="02_server/endpoints.html"><strong aria-hidden="true">2.2.</strong> Endpoint Documentation</a></li><li class="chapter-item expanded "><a href="02_server/public_instances.html"><strong aria-hidden="true">2.3.</strong> Public Instances</a></li></ol></li><li class="chapter-item expanded "><a href="clients_and_libraries.html"><strong aria-hidden="true">3.</strong> Clients and Libraries</a></li><li class="chapter-item expanded "><a href="03_cli/index.html"><strong aria-hidden="true">4.</strong> CLI Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_cli/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="03_cli/usage.html"><strong aria-hidden="true">4.2.</strong> CLI Usage</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -402,15 +402,18 @@ $ cd spacebin
 <li>Uptime is not guaranteed, we do however make a promise of stability on Spacebin and we hope we can uphold that promise to the fullest.</li>
 <li>To access the API use the <code>api</code> subdomain (<code>api.spaceb.in</code>).</li>
 </ul>
-<h1><a class="header" href="#known-clients" id="known-clients">Known Clients</a></h1>
-<p><strong>This is a list of all known clients that can be used with Spacebin.</strong></p>
-<h2><a class="header" href="#command-line-clients" id="command-line-clients">Command Line Clients</a></h2>
+<h1><a class="header" href="#clients--libraries" id="clients--libraries">Clients &amp; Libraries</a></h1>
+<p>This is a list of official and officially recognized clients and API libraries for use with Spacebin.</p>
+<p>Not all of these clients are developed by the Spacebin Team, any library/client that is will have the author <code>Spacebin Team</code> and will be marked as official.</p>
+<h2><a class="header" href="#clients" id="clients">Clients</a></h2>
 <table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Platforms</th><th>Description</th><th>Repository</th></tr></thead><tbody>
 <tr><td>Spacebin Team</td><td><code>cli</code></td><td>Yes</td><td><code>*nix</code>, <code>macOS</code></td><td>Fast and recommended terminal client built in Rust</td><td><a href="https://github.com/spacebin-org/cli">View</a></td></tr>
+<tr><td>Spacebin Team</td><td><code>polaris</code></td><td>Yes</td><td><code>web</code></td><td>Official web client for Spacebin written in Svelte</td><td><a href="https://github.com/spacebin-org/polaris">View</a></td></tr>
 </tbody></table>
-<h2><a class="header" href="#web-clients" id="web-clients">Web Clients</a></h2>
-<table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Description</th><th>Repository</th></tr></thead><tbody>
-<tr><td>Spacebin Team</td><td><code>polaris</code></td><td>Yes</td><td>Official web client for Spacebin written in Svelte</td><td><a href="https://github.com/spacebin-org/polaris">View</a></td></tr>
+<h2><a class="header" href="#libraries" id="libraries">Libraries</a></h2>
+<table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Languages</th><th>Description</th><th>Repository</th></tr></thead><tbody>
+<tr><td>GreatGodApollo</td><td><code>gospacebin</code></td><td>No</td><td><code>golang</code></td><td>Golang package for Spacebin API</td><td><a href="https://github.com/greatgodapollo/gospacebin">View</a></td></tr>
+<tr><td>Spacebin Team</td><td><code>spacebin-js</code></td><td>Yes</td><td><code>javascript</code></td><td>Official Node.js library for interacting with Spacebin</td><td><a href="https://github.com/spacebin-org/spacebin-js">View</a></td></tr>
 </tbody></table>
 <h2><a class="header" href="#chapter-03--cli-documentation" id="chapter-03--cli-documentation">Chapter 03 — CLI Documentation</a></h2>
 <p>This section covers the <a href="https://github.com/spacebin-org/cli">Spacebin CLI</a>, and provides lots of useful information on the topic.</p>
