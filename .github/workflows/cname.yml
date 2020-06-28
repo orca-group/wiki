@@ -1,0 +1,13 @@
+name: Create CNAME
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  deploy:
+      runs-on: ubuntu-18.04
+      steps:
+      - uses: actions/checkout@v2
+      - run: echo "docs.spaceb.in" >> CNAME
