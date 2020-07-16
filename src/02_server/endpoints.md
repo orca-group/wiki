@@ -2,40 +2,80 @@
 
 Every endpoint on a standard instance is prefixed by `/api/v1`.
 
-All requests are JSON, therefore they must all include a `Content-Type` header with a value of `application/json`.
+All JSON responses on a standard instance follow a common, defined format.
+
+Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.
+
+The "common, defined" format:
+
+```json
+{
+  "status": 000,
+  "payload": {
+    ... 
+  },
+  "error": ""
+}
+```
+
+**Properties:**
+* `status (Number)`: An always present number containing the request's HTTP status code.
+* `payload (Object)`: When a request succeeds this field contains any information returned by the request.
+* `error (String)`: If present, a string which includes a message describing the error.
 
 ## `GET /document/<id>`
 
-### Request Parameters
+### Route Parameters
 
-* `id (type: String)`
-	* **Description**: ID associated with document.
-	* **Required:** True
-	* **Length:** Set in Config (Default: 12)
+* `id (String)`: ID of the document you are requesting.
+
+### Response Body
+
+The body returned by this request is the same of the document in the database.
+
+```json
+{
+  "id": "...",
+  "content": "...",
+  "dateCreated": "1970-01-01T05:00:00.000Z",
+  "extension": "..."
+}
+```
+
+* `id (String)`: The unique identifier of the document.
+* `content (String)`: The content of the document.
+* `dateCreated (ISO Date)`: The date in ISO format of when the document was created.
+* `extension (String)`: The file format/extension the document's **content** is. Most commonly `text`.
+
+## `GET /document/<id>/verify`
+
+**Warning:** This endpoint may soon be removed, in favor of just making a GET document request.
+
+### Route Parameters
+
+* `id (String)`: The unique identifier of the document you are requesting.
 
 ### Response Body
 
 ```json
 {
-	"id": "...",
-	"content": "...",
-	"dateCreated": "..."
+  "exists": true | false
 }
 ```
 
-* `id (type: String)`
-	* **Description:** ID associated with document.
-	* **Length:** Set in Config (Default: 12 chars)
-	* **Notes:** Will always be the same as the key parameter in request body.
-* `content (type: String)`
-	* **Description:** The content of the requested document.
-	* **Max Length:** Set in Config (Default: 400,000 chars)
-	* **Min Length:** 2 chars
-	* **Notes:** New lines are encoded with a `\n`
-* `dateCreated (type: String/Date)`
-	* **Description:** The timestamp the document was created.
+* `exists (Boolean)`: Whether the document exists or not. true if exists, false if it doesn't.
 
-## `POST /document`
+## `GET /document/<id>/raw`
+
+### Route Parameters
+
+* `id (String)`: ID of the document you are requesting.
+
+### Response Text
+
+The plain text **content** with the document, including new lines.
+
+## `POST /document/`
 
 ### Request Body
 
@@ -45,61 +85,16 @@ All requests are JSON, therefore they must all include a `Content-Type` header w
 }
 ```
 
-* `content (type: String)`
-	* **Description:** The content of the requested document.
-	* **Max Length:** Set in Config (Default: 400,000 chars)
-	* **Min Length:** 2 chars
+* `content (String)`: The content of the document to insert. Newlines must be replaced with the string `\n` as to preserve JSON validity.
 
-### Response Body
+### Response JSON Body
 
 ```json
 {
-	"id": "...",
-	"content": "..."
+  "id": "...",
+  "contentHash": "..."
 }
 ```
 
-* `id (type: String)`
-	* **Description:** Key/id associated with document.
-	* **Length:** Set in Config (Default: 12 chars)
-* `content (type: String)`
-	* **Description:** The content of the requested document.
-	* **Max Length:** Set in Config (Default: 400,000 chars)
-	* **Min Length:** 2 chars
-	* **Notes:** New lines are encoded with a `\n`. Will always be the same as the key parameter in request body.
-
-## `POST /verify`
-
-Returns status code 200 or 404 depending on if the `id` parameter exists in the database.
-
-### Request Body
-
-```json
-{
-	"id": "..."
-}
-```
-
-* `id (type: String)`
-	* **Description:** ID associated with document.
-	* **Length:** Set in Config (Default: 12 chars)
-	* **Notes:** Will always be the same as the key parameter in request body.
-
-### Response Body
-
-None.
-
-## `POST /document/<id>/raw`
-
-Returns the Plain Text content of a document object with the id `<id>`
-
-### Request Parameters
-
-* `id (type: String)`
-	* **Description:** ID associated with document.
-	* **Length:** Set in Config (Default: 12 chars)
-	* **Notes:** Will always be the same as the key parameter in request body.
-
-### Response Body
-
-Returns the `Plain Text` variant of a document's content field.
+* `id (String)`: The ID of the document inserted.
+* `contentHash (String)`: A base 64 hash of the document's content.
