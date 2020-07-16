@@ -269,116 +269,83 @@ $ cd spacebin
 <p><strong>NOTE:</strong> Changing the values <code>synchronize</code>, and <code>entities</code> is highly unrecommended as these options can lead to data-loss or a broken server.</p>
 <h1><a class="header" href="#endpoint-documentation" id="endpoint-documentation">Endpoint Documentation</a></h1>
 <p>Every endpoint on a standard instance is prefixed by <code>/api/v1</code>.</p>
-<p>All requests are JSON, therefore they must all include a <code>Content-Type</code> header with a value of <code>application/json</code>.</p>
-<h2><a class="header" href="#get-documentid" id="get-documentid"><code>GET /document/&lt;id&gt;</code></a></h2>
-<h3><a class="header" href="#request-parameters" id="request-parameters">Request Parameters</a></h3>
+<p>All JSON responses on a standard instance follow a common, defined format.</p>
+<p>Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.</p>
+<p>The &quot;common, defined&quot; format:</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: 000,
+  &quot;payload&quot;: {
+    ... 
+  },
+  &quot;error&quot;: &quot;&quot;
+}
+</code></pre>
+<p><strong>Properties:</strong></p>
 <ul>
-<li><code>id (type: String)</code>
-<ul>
-<li><strong>Description</strong>: ID associated with document.</li>
-<li><strong>Required:</strong> True</li>
-<li><strong>Length:</strong> Set in Config (Default: 12)</li>
+<li><code>status (Number)</code>: An always present number containing the request's HTTP status code.</li>
+<li><code>payload (Object)</code>: When a request succeeds this field contains any information returned by the request.</li>
+<li><code>error (String)</code>: If present, a string which includes a message describing the error.</li>
 </ul>
-</li>
+<h2><a class="header" href="#get-documentid" id="get-documentid"><code>GET /document/&lt;id&gt;</code></a></h2>
+<h3><a class="header" href="#route-parameters" id="route-parameters">Route Parameters</a></h3>
+<ul>
+<li><code>id (String)</code>: ID of the document you are requesting.</li>
 </ul>
 <h3><a class="header" href="#response-body" id="response-body">Response Body</a></h3>
+<p>The body returned by this request is the same of the document in the database.</p>
 <pre><code class="language-json">{
-	&quot;id&quot;: &quot;...&quot;,
-	&quot;content&quot;: &quot;...&quot;,
-	&quot;dateCreated&quot;: &quot;...&quot;
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;content&quot;: &quot;...&quot;,
+  &quot;dateCreated&quot;: &quot;1970-01-01T05:00:00.000Z&quot;,
+  &quot;extension&quot;: &quot;...&quot;
 }
 </code></pre>
 <ul>
-<li><code>id (type: String)</code>
+<li><code>id (String)</code>: The unique identifier of the document.</li>
+<li><code>content (String)</code>: The content of the document.</li>
+<li><code>dateCreated (ISO Date)</code>: The date in ISO format of when the document was created.</li>
+<li><code>extension (String)</code>: The file format/extension the document's <strong>content</strong> is. Most commonly <code>text</code>.</li>
+</ul>
+<h2><a class="header" href="#get-documentidverify" id="get-documentidverify"><code>GET /document/&lt;id&gt;/verify</code></a></h2>
+<p><strong>Warning:</strong> This endpoint may soon be removed, in favor of just making a GET document request.</p>
+<h3><a class="header" href="#route-parameters-1" id="route-parameters-1">Route Parameters</a></h3>
 <ul>
-<li><strong>Description:</strong> ID associated with document.</li>
-<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
-<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
+<li><code>id (String)</code>: The unique identifier of the document you are requesting.</li>
 </ul>
-</li>
-<li><code>content (type: String)</code>
+<h3><a class="header" href="#response-body-1" id="response-body-1">Response Body</a></h3>
+<pre><code class="language-json">{
+  &quot;exists&quot;: true | false
+}
+</code></pre>
 <ul>
-<li><strong>Description:</strong> The content of the requested document.</li>
-<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
-<li><strong>Min Length:</strong> 2 chars</li>
-<li><strong>Notes:</strong> New lines are encoded with a <code>\n</code></li>
+<li><code>exists (Boolean)</code>: Whether the document exists or not. true if exists, false if it doesn't.</li>
 </ul>
-</li>
-<li><code>dateCreated (type: String/Date)</code>
+<h2><a class="header" href="#get-documentidraw" id="get-documentidraw"><code>GET /document/&lt;id&gt;/raw</code></a></h2>
+<h3><a class="header" href="#route-parameters-2" id="route-parameters-2">Route Parameters</a></h3>
 <ul>
-<li><strong>Description:</strong> The timestamp the document was created.</li>
+<li><code>id (String)</code>: ID of the document you are requesting.</li>
 </ul>
-</li>
-</ul>
-<h2><a class="header" href="#post-document" id="post-document"><code>POST /document</code></a></h2>
+<h3><a class="header" href="#response-text" id="response-text">Response Text</a></h3>
+<p>The plain text <strong>content</strong> with the document, including new lines.</p>
+<h2><a class="header" href="#post-document" id="post-document"><code>POST /document/</code></a></h2>
 <h3><a class="header" href="#request-body" id="request-body">Request Body</a></h3>
 <pre><code class="language-json">{
 	&quot;content&quot;: &quot;...&quot;
 }
 </code></pre>
 <ul>
-<li><code>content (type: String)</code>
-<ul>
-<li><strong>Description:</strong> The content of the requested document.</li>
-<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
-<li><strong>Min Length:</strong> 2 chars</li>
+<li><code>content (String)</code>: The content of the document to insert. Newlines must be replaced with the string <code>\n</code> as to preserve JSON validity.</li>
 </ul>
-</li>
-</ul>
-<h3><a class="header" href="#response-body-1" id="response-body-1">Response Body</a></h3>
+<h3><a class="header" href="#response-json-body" id="response-json-body">Response JSON Body</a></h3>
 <pre><code class="language-json">{
-	&quot;id&quot;: &quot;...&quot;,
-	&quot;content&quot;: &quot;...&quot;
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;contentHash&quot;: &quot;...&quot;
 }
 </code></pre>
 <ul>
-<li><code>id (type: String)</code>
-<ul>
-<li><strong>Description:</strong> Key/id associated with document.</li>
-<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
+<li><code>id (String)</code>: The ID of the document inserted.</li>
+<li><code>contentHash (String)</code>: A base 64 hash of the document's content.</li>
 </ul>
-</li>
-<li><code>content (type: String)</code>
-<ul>
-<li><strong>Description:</strong> The content of the requested document.</li>
-<li><strong>Max Length:</strong> Set in Config (Default: 400,000 chars)</li>
-<li><strong>Min Length:</strong> 2 chars</li>
-<li><strong>Notes:</strong> New lines are encoded with a <code>\n</code>. Will always be the same as the key parameter in request body.</li>
-</ul>
-</li>
-</ul>
-<h2><a class="header" href="#post-verify" id="post-verify"><code>POST /verify</code></a></h2>
-<p>Returns status code 200 or 404 depending on if the <code>id</code> parameter exists in the database.</p>
-<h3><a class="header" href="#request-body-1" id="request-body-1">Request Body</a></h3>
-<pre><code class="language-json">{
-	&quot;id&quot;: &quot;...&quot;
-}
-</code></pre>
-<ul>
-<li><code>id (type: String)</code>
-<ul>
-<li><strong>Description:</strong> ID associated with document.</li>
-<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
-<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
-</ul>
-</li>
-</ul>
-<h3><a class="header" href="#response-body-2" id="response-body-2">Response Body</a></h3>
-<p>None.</p>
-<h2><a class="header" href="#post-documentidraw" id="post-documentidraw"><code>POST /document/&lt;id&gt;/raw</code></a></h2>
-<p>Returns the Plain Text content of a document object with the id <code>&lt;id&gt;</code></p>
-<h3><a class="header" href="#request-parameters-1" id="request-parameters-1">Request Parameters</a></h3>
-<ul>
-<li><code>id (type: String)</code>
-<ul>
-<li><strong>Description:</strong> ID associated with document.</li>
-<li><strong>Length:</strong> Set in Config (Default: 12 chars)</li>
-<li><strong>Notes:</strong> Will always be the same as the key parameter in request body.</li>
-</ul>
-</li>
-</ul>
-<h3><a class="header" href="#response-body-3" id="response-body-3">Response Body</a></h3>
-<p>Returns the <code>Plain Text</code> variant of a document's content field.</p>
 <h1><a class="header" href="#public-instances" id="public-instances">Public Instances</a></h1>
 <p>If you have an instance you'd like listed here, please contact the Team via our <a href="https://discord.gg/zsxwgYc">Discord</a> and we'll try to get back to you in a timely matter!</p>
 <h2><a class="header" href="#spacebin" id="spacebin"><code>spaceb.in</code></a></h2>
