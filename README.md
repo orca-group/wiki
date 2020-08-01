@@ -8,12 +8,11 @@
 
 * [`Rust`](https://www.rust-lang.org/)
 * [`mdBook`](https://crates.io/crates/mdbook)
-* [GNU Make](https://www.gnu.org/software/make/)
 
 ```sh
-$ make clean # Cleans output directories.
-$ make build # Builds static files for usage in production environments.
-$ make serve # Rebuilds on file change & runs a local server on port 3000. Useful when developing.
+$ rm -rf book  # Cleans output directories.
+$ mdbook build # Builds static files for usage in production environments.
+$ mdbook serve # Rebuilds on file change & runs a local server on port 3000. Useful when developing.
 ```
 
 ## Authors
