@@ -2,99 +2,77 @@
 
 Every endpoint on a standard instance is prefixed by `/api/v1`.
 
-All JSON responses on a standard instance follow a common, defined format.
+All JSON responses on a standard instance follow a common, defined format and are snake_cased.
 
 Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.
 
-The "common, defined" format:
+The format:
 
 ```json
 {
-  "status": 000,
+  "status": 000, // HTTP status code.
   "payload": {
-    ... 
+    // The response's content, null if an error is present.
+    ...
+  },
+  "error": "" // Error message.
+}
+```
+
+All keys in the response will be snake_cased.
+
+## POST `/documents/`
+
+### Request
+
+```json
+{
+  "content": "...", // The document's content.
+  "extension": "...", // The document's file type/extension.
+}
+```
+
+### Response
+
+```json
+{
+  "status": 201,
+  "payload": {
+    "id": "...", // The unique ID of the document.
+    "content_hash": "...", // A base64 representation of the document's content. Useful for content validation.
   },
   "error": ""
 }
 ```
 
-**Properties:**
-* `status (Number)`: An always present number containing the request's HTTP status code.
-* `payload (Object)`: When a request succeeds this field contains any information returned by the request.
-* `error (String)`: If present, a string which includes a message describing the error.
+## GET `/documents/:id/`
 
-## `GET /document/<id>`
+### Request
 
-### Route Parameters
+* `:id`: The document's unique ID.
 
-* `id (String)`: ID of the document you are requesting.
-
-### Response Body
-
-The body returned by this request is the same of the document in the database.
+### Response
 
 ```json
 {
-  "id": "...",
-  "content": "...",
-  "dateCreated": "1970-01-01T05:00:00.000Z",
-  "extension": "..."
+  "status": 201,
+  "payload": {
+    "id": "...", // The document's unique ID.
+    "content": "...", // The document's content.
+    "extension": "...", // The document's file type/extension.
+    "created_at": 0000000000, // The UNIX timestamp at the time the document was created.
+    "updated_at": 0000000000 // The UNIX timestamp at the time the document was last updated, usually the same as `created_at`.
+  },
+  "error": ""
 }
 ```
 
-* `id (String)`: The unique identifier of the document.
-* `content (String)`: The content of the document.
-* `dateCreated (ISO Date)`: The date in ISO format of when the document was created.
-* `extension (String)`: The file format/extension the document's **content** is. Most commonly `text`.
+## GET `/documents/:id/raw`
 
-## `GET /document/<id>/verify`
+### Request
 
-**Warning:** This endpoint may soon be removed, in favor of just making a GET document request.
+* `:id`: The document's unique ID.
 
-### Route Parameters
+### Response
 
-* `id (String)`: The unique identifier of the document you are requesting.
-
-### Response Body
-
-```json
-{
-  "exists": true | false
-}
-```
-
-* `exists (Boolean)`: Whether the document exists or not. true if exists, false if it doesn't.
-
-## `GET /document/<id>/raw`
-
-### Route Parameters
-
-* `id (String)`: ID of the document you are requesting.
-
-### Response Text
-
-The plain text **content** with the document, including new lines.
-
-## `POST /document/`
-
-### Request Body
-
-```json
-{
-	"content": "..."
-}
-```
-
-* `content (String)`: The content of the document to insert. Newlines must be replaced with the string `\n` as to preserve JSON validity.
-
-### Response JSON Body
-
-```json
-{
-  "id": "...",
-  "contentHash": "..."
-}
-```
-
-* `id (String)`: The ID of the document inserted.
-* `contentHash (String)`: A base 64 hash of the document's content.
+The response of this endpoint is just the plain text content of the document. If an error occurs while retrieving the document a JSON response will be sent back instead with the `error` field populated.
