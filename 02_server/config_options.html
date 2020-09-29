@@ -148,36 +148,52 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#spacebin-server-configuration-options" id="spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
+<h2><a class="header" href="#server" id="server"><code>server</code></a></h2>
 <ul>
-<li><code>host (String)</code>: Host address to serve on.</li>
-<li><code>port (Number)</code>: Port number to serve on.</li>
-<li><code>idLength (Number)</code>: Length of Document IDs to generate.</li>
-<li><code>maxDocumentLength (Number)</code>: Max age of documents.</li>
-<li><a href="#database-options"><code>dbOptions</code></a>
+<li><code>server.host</code>: Host address to serve on (default: <code>&quot;127.0.0.1&quot;</code>).</li>
+<li><code>server.port</code>: Port number to serve on (default: <code>9000</code>).</li>
+<li><code>server.use_csp</code>: Whether or not to send a CSP header along with responses (default: <code>true</code>).</li>
+<li><code>server.compress_level</code>: The level of compression to apply to responses. For more information see <a href="https://git.io/JUX9S">the Fiber documentation</a> (default: <code>1</code>).</li>
+<li><code>server.prefork</code>: Whether or not the server should run across multiple processes (default: <code>false</code>).</li>
+</ul>
+<h3><a class="header" href="#serverratelimits" id="serverratelimits"><code>server.ratelimits</code></a></h3>
 <ul>
-<li>See the <a href="#database-options">&quot;Database Options&quot;</a> section for more information.</li>
+<li><code>server.ratelimits.requests</code>: How many requests to allow per <code>duration</code> (default: <code>80</code>).</li>
+<li><code>server.ratelimits.duration</code>: How many milliseconds until the rate limit is lifted. (default: <code>60_000</code>). </li>
 </ul>
-</li>
-<li><a href="#rate-limiting"><code>rateLimits</code></a>
+<h2><a class="header" href="#database" id="database"><code>database</code></a></h2>
 <ul>
-<li><code>requests (Number)</code></li>
-<li><code>every (Number)</code></li>
-<li>See the <a href="#rate-limiting">&quot;Rate Limiting&quot;</a> section for more information.</li>
+<li><code>database.dialect</code>: The kind of database to connect to. Possible values are <code>mysql</code>, <code>sqlite</code>, or <code>postgresql</code> (default: <code>&quot;sqlite&quot;</code>).</li>
+<li><code>database.connection_uri</code>: The location of the database to connect to (default: <code>&quot;./spacebin.db&quot;</code>). <strong>NOTE:</strong> When connecting to MySQL databases you must pass the <code>parseTime=True</code> option.</li>
 </ul>
-</li>
-</ul>
-<h2><a class="header" href="#rate-limiting" id="rate-limiting">Rate Limiting</a></h2>
-<p>Spacebin has builtin rate-limiting thanks to <a href="https://github.com/koajs/ratelimit"><code>koa-ratelimit</code></a>.</p>
-<p>We use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><code>Map()</code></a> to store data related to rate limiting. A Redis option may be available in the future.</p>
-<p>There are two options related to configuring <code>koa-ratelimit</code>:</p>
+<h2><a class="header" href="#documents" id="documents"><code>documents</code></a></h2>
 <ul>
-<li><code>requests (Number)</code>: The number of requests that can be made before rate-limiting takes effect. </li>
-<li><code>every (Number)</code>: A millisecond value that controls how often the rate-limiter will be reset.</li>
+<li><code>documents.id_length</code>: The length of identifiers to generate for documents (default: <code>8</code>).</li>
+<li><code>documents.max_document_length</code>: The maximum amount of bytes a document can be (default: <code>400_000</code>).</li>
+<li><code>documents.max_age</code>: The amount of days documents are stored in the database before they're auto-deleted (default: <code>90</code>). </li>
 </ul>
-<h2><a class="header" href="#database-options" id="database-options">Database Options</a></h2>
-<p>These are TypeORM configuration options. Usually you will only want to change the ones related to authentication, however due to the current nature of Spacebin's configuration handler you have full access to the TypeORM config through this field.</p>
-<p>The structure of this data must follow that of any TypeORM config, defined <a href="https://typeorm.io/#/connection-options/">here</a>.</p>
-<p><strong>NOTE:</strong> Changing the values <code>synchronize</code>, and <code>entities</code> is highly unrecommended as these options can lead to data-loss or a broken server.</p>
+<h2><a class="header" href="#example-configuration" id="example-configuration">Example configuration</a></h2>
+<p>An example configuration is already provided in the Spacebin Spirit repository. It is repeated here for convenience.</p>
+<pre><code class="language-toml">[server]
+host = &quot;127.0.0.1&quot;
+port = 9000
+use_csp = true
+compress_level = 1
+prefork = false
+
+[server.ratelimits]
+requests = 80
+duration = 60_000 # in ms
+
+[database]
+dialect = &quot;sqlite&quot;
+connection_uri = &quot;spacebin.db&quot;
+
+[documents]
+id_length = 12
+max_document_length = 400_000
+max_age = 90 # in days
+</code></pre>
 
                     </main>
 

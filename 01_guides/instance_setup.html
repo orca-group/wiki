@@ -152,47 +152,26 @@
 <p>This guide details the very easy process of setting up a Spacebin server instance.</p>
 </blockquote>
 <p>This is a quick guide on how to setup a basic spacebin API instance.</p>
-<h2><a class="header" href="#prerequisites" id="prerequisites"><strong>Prerequisites</strong></a></h2>
+<p>There are two methods for installing the Spacebin Spirit server:</p>
+<h2><a class="header" href="#docker-recommended" id="docker-recommended">Docker (recommended)</a></h2>
+<p><strong>Prerequisites:</strong></p>
 <ul>
-<li>A modern system with decent specifications.</li>
-<li>Git (<a href="https://git-scm.com/downloads">see here</a>).</li>
-<li>Node.js 10, 12, or 14 (<a href="https://nodejs.org/en/download/">see here</a>).</li>
-<li>Yarn. (<code>npm install -g yarn</code>, or <a href="classic.yarnpkg.com/en/docs/install">see here</a>)</li>
-<li>A database supported by TypeORM. (MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, Microsoft SQL Server, Oracle DB, SAP Hana, sql.js, MongoDB)</li>
+<li><a href="https://git-scm.org/downloads">Git</a></li>
+<li><a href="https://www.docker.com/get-started">Docker</a></li>
+<li><a href="https://www.sudo.ws/sudo/"><code>sudo</code></a></li>
 </ul>
-<h3><a class="header" href="#1-download-the-spacebin-code" id="1-download-the-spacebin-code">1. Download the Spacebin code.</a></h3>
-<pre><code class="language-console">$ git clone https://github.com/spacebin-org/server.git spacebin
-$ cd spacebin
+<h3><a class="header" href="#download-the-git-repository" id="download-the-git-repository">Download the Git repository</a></h3>
+<p>These two commands will download the Git repository from Github and <code>cd</code> into that directory.</p>
+<pre><code class="language-command">$ git clone https://github.com/spacebin-org/spirit.git
+$ cd spirit
 </code></pre>
-<h3><a class="header" href="#2-configuring-spacebin" id="2-configuring-spacebin">2. Configuring Spacebin.</a></h3>
-<p>The defaults will probably be mostly fine but it's never a bad idea to double check.</p>
-<h3><a class="header" href="#database-setup" id="database-setup">Database Setup</a></h3>
-<blockquote>
-<p>Before continuing you must setup your database. The following instructions explain how:</p>
-</blockquote>
-<p>The database configuration object contain the only required information for configuring your database.</p>
-<p>When configuring, do not change the following values:</p>
-<pre><code class="language-js">{
-  synchronize: false,
-  logging: false,
-  entities: [
-    Document
-  ]
-}
+<h3><a class="header" href="#build-and-run-the-docker-image" id="build-and-run-the-docker-image">Build and run the docker image</a></h3>
+<p>These two commands will build a docker image called <code>spacebin-server</code> and run the docker image on port <code>80</code>.</p>
+<pre><code class="language-command">$ sudo docker build -t spacebin-server .
+$ sudo docker run -d -p 80:9000 spacebin-server
 </code></pre>
-<p>Changing these is either highly unrecommended or <strong>will</strong> break your instance, you almost never need to change them.</p>
-<p>The only values you do need to change are ones related to database authentication. You can view all available connection options on <a href="https://typeorm.io/#/connection-options/postgres--cockroachdb-connection-options">this page of the TypeORM documentation</a>. Simply find the instructions for your database and configure.</p>
-<h3><a class="header" href="#3-installing-packages" id="3-installing-packages">3. Installing packages</a></h3>
-<pre><code class="language-console">$ yarn
-</code></pre>
-<h4><a class="header" href="#31-installing-database-packages" id="31-installing-database-packages">3.1. Installing database packages</a></h4>
-<p>Spacebin doesn't have database packages pre-installed, therefore you must install them before proceeding. They are just NPM packages, nothing special is happening.</p>
-<pre><code class="language-bash">$ yarn add (mongodb | mysql | pg | sqlite3 | mssql | sql.js | oracledb)
-</code></pre>
-<h3><a class="header" href="#5-finishing-off" id="5-finishing-off">5. Finishing off</a></h3>
-<pre><code class="language-console">$ yarn start
-</code></pre>
-<p>After running <code>yarn start</code>, (baring any issues in the installation process) you'll be able to see a Spacebin instance live at your configured URL, by default that's <code>0.0.0.0:7777</code>.</p>
+<h2><a class="header" href="#manual" id="manual">Manual</a></h2>
+<p>Documentation unwritten...</p>
 
                     </main>
 

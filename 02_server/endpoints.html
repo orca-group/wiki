@@ -149,83 +149,61 @@
                     <main>
                         <h1><a class="header" href="#endpoint-documentation" id="endpoint-documentation">Endpoint Documentation</a></h1>
 <p>Every endpoint on a standard instance is prefixed by <code>/api/v1</code>.</p>
-<p>All JSON responses on a standard instance follow a common, defined format.</p>
+<p>All JSON responses on a standard instance follow a common, defined format and are snake_cased.</p>
 <p>Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.</p>
-<p>The &quot;common, defined&quot; format:</p>
+<p>The format:</p>
 <pre><code class="language-json">{
-  &quot;status&quot;: 000,
+  &quot;status&quot;: 000, // HTTP status code.
   &quot;payload&quot;: {
-    ... 
+    // The response's content, null if an error is present.
+    ...
+  },
+  &quot;error&quot;: &quot;&quot; // Error message.
+}
+</code></pre>
+<p>All keys in the response will be snake_cased.</p>
+<h2><a class="header" href="#post-documents" id="post-documents">POST <code>/documents/</code></a></h2>
+<h3><a class="header" href="#request" id="request">Request</a></h3>
+<pre><code class="language-json">{
+  &quot;content&quot;: &quot;...&quot;, // The document's content.
+  &quot;extension&quot;: &quot;...&quot;, // The document's file type/extension.
+}
+</code></pre>
+<h3><a class="header" href="#response" id="response">Response</a></h3>
+<pre><code class="language-json">{
+  &quot;status&quot;: 201,
+  &quot;payload&quot;: {
+    &quot;id&quot;: &quot;...&quot;, // The unique ID of the document.
+    &quot;content_hash&quot;: &quot;...&quot;, // A base64 representation of the document's content. Useful for content validation.
   },
   &quot;error&quot;: &quot;&quot;
 }
 </code></pre>
-<p><strong>Properties:</strong></p>
+<h2><a class="header" href="#get-documentsid" id="get-documentsid">GET <code>/documents/:id/</code></a></h2>
+<h3><a class="header" href="#request-1" id="request-1">Request</a></h3>
 <ul>
-<li><code>status (Number)</code>: An always present number containing the request's HTTP status code.</li>
-<li><code>payload (Object)</code>: When a request succeeds this field contains any information returned by the request.</li>
-<li><code>error (String)</code>: If present, a string which includes a message describing the error.</li>
+<li><code>:id</code>: The document's unique ID.</li>
 </ul>
-<h2><a class="header" href="#get-documentid" id="get-documentid"><code>GET /document/&lt;id&gt;</code></a></h2>
-<h3><a class="header" href="#route-parameters" id="route-parameters">Route Parameters</a></h3>
-<ul>
-<li><code>id (String)</code>: ID of the document you are requesting.</li>
-</ul>
-<h3><a class="header" href="#response-body" id="response-body">Response Body</a></h3>
-<p>The body returned by this request is the same of the document in the database.</p>
+<h3><a class="header" href="#response-1" id="response-1">Response</a></h3>
 <pre><code class="language-json">{
-  &quot;id&quot;: &quot;...&quot;,
-  &quot;content&quot;: &quot;...&quot;,
-  &quot;dateCreated&quot;: &quot;1970-01-01T05:00:00.000Z&quot;,
-  &quot;extension&quot;: &quot;...&quot;
+  &quot;status&quot;: 201,
+  &quot;payload&quot;: {
+    &quot;id&quot;: &quot;...&quot;, // The document's unique ID.
+    &quot;content&quot;: &quot;...&quot;, // The document's content.
+    &quot;extension&quot;: &quot;...&quot;, // The document's file type/extension.
+    &quot;created_at&quot;: 0000000000, // The UNIX timestamp at the time the document was created.
+    &quot;updated_at&quot;: 0000000000 // The UNIX timestamp at the time the document was last updated, usually the same as `created_at`.
+  },
+  &quot;error&quot;: &quot;&quot;
 }
 </code></pre>
+<h2><a class="header" href="#get-documentsidraw" id="get-documentsidraw">GET <code>/documents/:id/raw</code></a></h2>
+<h3><a class="header" href="#request-2" id="request-2">Request</a></h3>
 <ul>
-<li><code>id (String)</code>: The unique identifier of the document.</li>
-<li><code>content (String)</code>: The content of the document.</li>
-<li><code>dateCreated (ISO Date)</code>: The date in ISO format of when the document was created.</li>
-<li><code>extension (String)</code>: The file format/extension the document's <strong>content</strong> is. Most commonly <code>text</code>.</li>
+<li><code>:id</code>: The document's unique ID.</li>
 </ul>
-<h2><a class="header" href="#get-documentidverify" id="get-documentidverify"><code>GET /document/&lt;id&gt;/verify</code></a></h2>
-<p><strong>Warning:</strong> This endpoint may soon be removed, in favor of just making a GET document request.</p>
-<h3><a class="header" href="#route-parameters-1" id="route-parameters-1">Route Parameters</a></h3>
-<ul>
-<li><code>id (String)</code>: The unique identifier of the document you are requesting.</li>
-</ul>
-<h3><a class="header" href="#response-body-1" id="response-body-1">Response Body</a></h3>
-<pre><code class="language-json">{
-  &quot;exists&quot;: true | false
-}
-</code></pre>
-<ul>
-<li><code>exists (Boolean)</code>: Whether the document exists or not. true if exists, false if it doesn't.</li>
-</ul>
-<h2><a class="header" href="#get-documentidraw" id="get-documentidraw"><code>GET /document/&lt;id&gt;/raw</code></a></h2>
-<h3><a class="header" href="#route-parameters-2" id="route-parameters-2">Route Parameters</a></h3>
-<ul>
-<li><code>id (String)</code>: ID of the document you are requesting.</li>
-</ul>
-<h3><a class="header" href="#response-text" id="response-text">Response Text</a></h3>
-<p>The plain text <strong>content</strong> with the document, including new lines.</p>
-<h2><a class="header" href="#post-document" id="post-document"><code>POST /document/</code></a></h2>
-<h3><a class="header" href="#request-body" id="request-body">Request Body</a></h3>
-<pre><code class="language-json">{
-	&quot;content&quot;: &quot;...&quot;
-}
-</code></pre>
-<ul>
-<li><code>content (String)</code>: The content of the document to insert. Newlines must be replaced with the string <code>\n</code> as to preserve JSON validity.</li>
-</ul>
-<h3><a class="header" href="#response-json-body" id="response-json-body">Response JSON Body</a></h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;...&quot;,
-  &quot;contentHash&quot;: &quot;...&quot;
-}
-</code></pre>
-<ul>
-<li><code>id (String)</code>: The ID of the document inserted.</li>
-<li><code>contentHash (String)</code>: A base 64 hash of the document's content.</li>
-</ul>
+<h3><a class="header" href="#response-2" id="response-2">Response</a></h3>
+<p>The response of this endpoint is just the plain text content of the document. If an error occurs while retrieving the document a JSON response will be sent back instead with the <code>error</code> field populated.</p>
 
                     </main>
 
