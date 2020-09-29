@@ -6,11 +6,11 @@ Not all of these clients are developed by the Spacebin Team, any library/client 
 
 ## Clients
 
-| Author         | Name      | Official? | Platforms                        | Description                                           | Repository                                       |
-|----------------|-----------|-----------|----------------------------------|-------------------------------------------------------|--------------------------------------------------|
-| Spacebin Team  | `cli`     | Yes       | `*nix`, `macOS`, `win32`         | Fast and recommended terminal client built in Rust    | [View](https://github.com/spacebin-org/cli)      |
-| Spacebin Team  | `polaris` | Yes       | `web`                            | Official web client for Spacebin written in Svelte    | [View](https://github.com/spacebin-org/polaris)  |
-| GreatGodApollo | `lunar`   | No        | `*nix`, `win32`, `macOS`, `*bsd` | Alternative command line interface for Spacebin in Go | [View](https://github.com/greatgodapollo/lunar)  |
+| Author         | Name      | Official? | Platforms                         | Description                                         | Repository                                      |
+|----------------|-----------|-----------|-----------------------------------|-----------------------------------------------------|-------------------------------------------------|
+| Spacebin Team  | `comet`   | Yes       | `linux`, `macOS`, `*bsd`          | Fast and recommended terminal client built in Rust. | [View](https://github.com/spacebin-org/cli)     |
+| Spacebin Team  | `pulsar`  | Yes       | `web`                             | Official JavaScript-free web client for Spacebin.   | [View](https://github.com/spacebin-org/pulsar)  |
+| GreatGodApollo | `lunar`   | No        | `linux`, `win32`, `macOS`, `*bsd` | Alternative CLI for Spacebin in Go.                 | [View](https://github.com/greatgodapollo/lunar) |
 
 ## Libraries
 
