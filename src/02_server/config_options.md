@@ -1,31 +1,51 @@
 # Spacebin Server Configuration Options
 
-* `host (String)`: Host address to serve on.
-* `port (Number)`: Port number to serve on.
-* `idLength (Number)`: Length of Document IDs to generate.
-* `maxDocumentLength (Number)`: Max age of documents.
-* [`dbOptions`](#database-options)
-  * See the ["Database Options"](#database-options) section for more information.
-* [`rateLimits`](#rate-limiting)
-  * `requests (Number)`
-  * `every (Number)`
-  * See the ["Rate Limiting"](#rate-limiting) section for more information.
+## `server`
 
-## Rate Limiting
+* `server.host`: Host address to serve on (default: `"127.0.0.1"`).
+* `server.port`: Port number to serve on (default: `9000`).
+* `server.use_csp`: Whether or not to send a CSP header along with responses (default: `true`).
+* `server.compress_level`: The level of compression to apply to responses. For more information see [the Fiber documentation](https://git.io/JUX9S) (default: `1`).
+* `server.prefork`: Whether or not the server should run across multiple processes (default: `false`).
 
-Spacebin has builtin rate-limiting thanks to [`koa-ratelimit`](https://github.com/koajs/ratelimit).
+### `server.ratelimits`
 
-We use a [`Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) to store data related to rate limiting. A Redis option may be available in the future.
+* `server.ratelimits.requests`: How many requests to allow per `duration` (default: `80`).
+* `server.ratelimits.duration`: How many milliseconds until the rate limit is lifted. (default: `60_000`). 
 
-There are two options related to configuring `koa-ratelimit`:
+## `database`
 
-* `requests (Number)`: The number of requests that can be made before rate-limiting takes effect. 
-* `every (Number)`: A millisecond value that controls how often the rate-limiter will be reset.
+* `database.dialect`: The kind of database to connect to. Possible values are `mysql`, `sqlite`, or `postgresql` (default: `"sqlite"`).
+* `database.connection_uri`: The location of the database to connect to (default: `"./spacebin.db"`). **NOTE:** When connecting to MySQL databases you must pass the `parseTime=True` option.  
+  
+## `documents`
 
-## Database Options
+* `documents.id_length`: The length of identifiers to generate for documents (default: `8`).
+* `documents.max_document_length`: The maximum amount of bytes a document can be (default: `400_000`).
+* `documents.max_age`: The amount of days documents are stored in the database before they're auto-deleted (default: `90`). 
 
-These are TypeORM configuration options. Usually you will only want to change the ones related to authentication, however due to the current nature of Spacebin's configuration handler you have full access to the TypeORM config through this field.
+## Example configuration
 
-The structure of this data must follow that of any TypeORM config, defined [here](https://typeorm.io/#/connection-options/).
+An example configuration is already provided in the Spacebin Spirit repository. It is repeated here for convenience.
 
-**NOTE:** Changing the values `synchronize`, and `entities` is highly unrecommended as these options can lead to data-loss or a broken server.
+```toml
+[server]
+host = "127.0.0.1"
+port = 9000
+use_csp = true
+compress_level = 1
+prefork = false
+
+[server.ratelimits]
+requests = 80
+duration = 60_000 # in ms
+
+[database]
+dialect = "sqlite"
+connection_uri = "spacebin.db"
+
+[documents]
+id_length = 12
+max_document_length = 400_000
+max_age = 90 # in days
+```
