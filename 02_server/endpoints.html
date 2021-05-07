@@ -149,19 +149,19 @@
                     <main>
                         <h1><a class="header" href="#endpoint-documentation" id="endpoint-documentation">Endpoint Documentation</a></h1>
 <p>Every endpoint on a standard instance is prefixed by <code>/api/v1</code>.</p>
-<p>All JSON responses on a standard instance follow a common, defined format and are snake_cased.</p>
+<p>All JSON responses on a standard instance follow a common format and are snake_cased.</p>
+<p>On <code>spaceb.in</code> —the Spacebin official instance—, API routes are available at <code>spaceb.in/api/v1</code> (including prefix).</p>
 <p>Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.</p>
 <p>The format:</p>
 <pre><code class="language-json">{
   &quot;status&quot;: 000, // HTTP status code.
   &quot;payload&quot;: {
-    // The response's content, null if an error is present.
+    // The response's content, is an empty object if an error is present.
     ...
   },
   &quot;error&quot;: &quot;&quot; // Error message.
 }
 </code></pre>
-<p>All keys in the response will be snake_cased.</p>
 <h2><a class="header" href="#post-documents" id="post-documents">POST <code>/documents/</code></a></h2>
 <h3><a class="header" href="#request" id="request">Request</a></h3>
 <pre><code class="language-json">{
@@ -169,6 +169,39 @@
   &quot;extension&quot;: &quot;...&quot;, // The document's file type/extension.
 }
 </code></pre>
+<h4><a class="header" href="#content-field" id="content-field">Content field</a></h4>
+<p>The value of the <code>content</code> field corresponds to the value of the paste and is required in all requests.</p>
+<p>Additionally, instances set a max length for this value. By default and on <code>spaceb.in</code> the max length is set to 400,000 bytes or ~390KB. Contact your instance's administrator or consult it's documentation to find the value of the max length of documents on it.</p>
+<h4><a class="header" href="#extension-field" id="extension-field">Extension Field</a></h4>
+<p>The <code>extension</code> field is used to set the file type of the paste and is required in all requests. Since this field will often be used for syntax highlighting purposes it is important that the value passed accurately corresponds to the format of the text in the file. </p>
+<p>The value of this field must follow a specific value, that being one of the following:</p>
+<ul>
+<li><code>python</code></li>
+<li><code>javascript</code>, <code>jsx</code></li>
+<li><code>typescript</code>, <code>tsx</code></li>
+<li><code>go</code></li>
+<li><code>kotlin</code></li>
+<li><code>cpp</code>, <code>csharp</code>, <code>c</code>, <code>objc</code></li>
+<li><code>sql</code></li>
+<li><code>scala</code></li>
+<li><code>haskell</code></li>
+<li><code>shell-session</code></li>
+<li><code>bash</code></li>
+<li><code>powershell</code></li>
+<li><code>php</code></li>
+<li><code>asm6502</code></li>
+<li><code>julia</code></li>
+<li><code>perl</code></li>
+<li><code>crystal</code></li>
+<li><code>json</code>, <code>yaml</code>, <code>toml</code></li>
+<li><code>rust</code></li>
+<li><code>ruby</code></li>
+<li><code>java</code></li>
+<li><code>markdown</code></li>
+<li><code>markup</code> (Catch-all for <code>html</code>, <code>xml</code>, <code>svg</code>, <code>atom</code>, <code>rss</code>, <code>mathml</code>, <code>ssml</code>)</li>
+<li><code>css</code></li>
+</ul>
+<p>Additionally, a value of <code>none</code> may be used for any paste that does not have/want an extension.</p>
 <h3><a class="header" href="#response" id="response">Response</a></h3>
 <pre><code class="language-json">{
   &quot;status&quot;: 201,
