@@ -20,7 +20,7 @@ Spacebin is a highly-reliable pastebin server, built with Golang and Fiber, that
 
 When you send a document to a Spacebin server the server generates a unique key for that document and makes the document available to any client accessing the server via the unique key.
 
-A client can now ask the server for the document by using it's unique key. If the request is performed correctly the server will respond with the document. The client can now display the document's content.
+A client can now ask the server for the document by using it's unique key. If the request is performed correctly the server will respond with the document. The client will now display the document's content.
 
 ## Community
 

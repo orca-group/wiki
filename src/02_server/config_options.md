@@ -5,7 +5,7 @@
 * `server.host`: Host address to serve on (default: `"127.0.0.1"`).
 * `server.port`: Port number to serve on (default: `9000`).
 * `server.use_csp`: Whether or not to send a CSP header along with responses (default: `true`).
-* `server.compress_level`: The level of compression to apply to responses. For more information see [the Fiber documentation](https://git.io/JUX9S) (default: `1`).
+* `server.compress_level`: The level of compression to apply to responses. For more information see [the Fiber documentation](https://git.io/J3SRK) (default: `1`).
 * `server.prefork`: Whether or not the server should run across multiple processes (default: `false`).
 
 ### `server.ratelimits`

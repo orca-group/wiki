@@ -1,6 +1,6 @@
 ## Commit guidelines
 
-Commits all follow the same, basic structure:
+Commits all follow the same basic structure:
 
 ```
 action(scope): message
@@ -13,6 +13,7 @@ This structure may seem similar to you if you've ever contributed to: Angular, S
 The action can be either `modify`, `rename`, `create`, `delete`.
 
 ### `scope`
+
 A path-like string representing the location of the file.
 
 * If it's a document it should follow a similar format to `{chapter}/{document_title}`.

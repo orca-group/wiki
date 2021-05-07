@@ -2,7 +2,9 @@
 
 Every endpoint on a standard instance is prefixed by `/api/v1`.
 
-All JSON responses on a standard instance follow a common, defined format and are snake_cased.
+All JSON responses on a standard instance follow a common format and are snake_cased.
+
+On `spaceb.in` &mdash;the Spacebin official instance&mdash;, API routes are available at `spaceb.in/api/v1` (including prefix).
 
 Responses which only return plain text follow no enforced format and can contain any values. When a request body is present in documentation, it is more often than not JSON.
 
@@ -12,14 +14,12 @@ The format:
 {
   "status": 000, // HTTP status code.
   "payload": {
-    // The response's content, null if an error is present.
+    // The response's content, is an empty object if an error is present.
     ...
   },
   "error": "" // Error message.
 }
 ```
-
-All keys in the response will be snake_cased.
 
 ## POST `/documents/`
 
@@ -31,6 +31,45 @@ All keys in the response will be snake_cased.
   "extension": "...", // The document's file type/extension.
 }
 ```
+
+#### Content field
+
+The value of the `content` field corresponds to the value of the paste and is required in all requests.
+
+Additionally, instances set a max length for this value. By default and on `spaceb.in` the max length is set to 400,000 bytes or ~390KB. Contact your instance's administrator or consult it's documentation to find the value of the max length of documents on it.
+
+#### Extension Field
+
+The `extension` field is used to set the file type of the paste and is required in all requests. Since this field will often be used for syntax highlighting purposes it is important that the value passed accurately corresponds to the format of the text in the file. 
+
+The value of this field must follow a specific value, that being one of the following:
+
+* `python`
+* `javascript`, `jsx`
+* `typescript`, `tsx`
+* `go`
+* `kotlin`
+* `cpp`, `csharp`, `c`, `objc`
+* `sql`
+* `scala`
+* `haskell`
+* `shell-session`
+* `bash`
+* `powershell`
+* `php`
+* `asm6502`
+* `julia`
+* `perl`
+* `crystal`
+* `json`, `yaml`, `toml`
+* `rust`
+* `ruby`
+* `java`
+* `markdown`
+* `markup` (Catch-all for `html`, `xml`, `svg`, `atom`, `rss`, `mathml`, `ssml`)
+* `css`
+
+Additionally, a value of `none` may be used for any paste that does not have/want an extension.
 
 ### Response
 
