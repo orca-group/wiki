@@ -5,22 +5,36 @@
         <meta charset="UTF-8">
         <title>Configuration Options - Spacebin Wiki</title>
         
+        
+
+
+        <!-- Custom HTML head -->
+        
+
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
         <link rel="shortcut icon" href="../favicon.png">
+        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
+        
         <link rel="stylesheet" href="../css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
@@ -36,7 +50,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -116,9 +130,11 @@
                     <h1 class="menu-title">Spacebin Wiki</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
                         
                     </div>
                 </div>
@@ -147,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#spacebin-server-configuration-options" id="spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
-<h2><a class="header" href="#server" id="server"><code>server</code></a></h2>
+                        <h1 id="spacebin-server-configuration-options"><a class="header" href="#spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
+<h2 id="server"><a class="header" href="#server"><code>server</code></a></h2>
 <ul>
 <li><code>server.host</code>: Host address to serve on (default: <code>&quot;127.0.0.1&quot;</code>).</li>
 <li><code>server.port</code>: Port number to serve on (default: <code>9000</code>).</li>
@@ -156,23 +172,23 @@
 <li><code>server.compress_level</code>: The level of compression to apply to responses. For more information see <a href="https://git.io/J3SRK">the Fiber documentation</a> (default: <code>1</code>).</li>
 <li><code>server.prefork</code>: Whether or not the server should run across multiple processes (default: <code>false</code>).</li>
 </ul>
-<h3><a class="header" href="#serverratelimits" id="serverratelimits"><code>server.ratelimits</code></a></h3>
+<h3 id="serverratelimits"><a class="header" href="#serverratelimits"><code>server.ratelimits</code></a></h3>
 <ul>
 <li><code>server.ratelimits.requests</code>: How many requests to allow per <code>duration</code> (default: <code>80</code>).</li>
 <li><code>server.ratelimits.duration</code>: How many milliseconds until the rate limit is lifted. (default: <code>60_000</code>). </li>
 </ul>
-<h2><a class="header" href="#database" id="database"><code>database</code></a></h2>
+<h2 id="database"><a class="header" href="#database"><code>database</code></a></h2>
 <ul>
 <li><code>database.dialect</code>: The kind of database to connect to. Possible values are <code>mysql</code>, <code>sqlite</code>, or <code>postgresql</code> (default: <code>&quot;sqlite&quot;</code>).</li>
 <li><code>database.connection_uri</code>: The location of the database to connect to (default: <code>&quot;./spacebin.db&quot;</code>). <strong>NOTE:</strong> When connecting to MySQL databases you must pass the <code>parseTime=True</code> option.</li>
 </ul>
-<h2><a class="header" href="#documents" id="documents"><code>documents</code></a></h2>
+<h2 id="documents"><a class="header" href="#documents"><code>documents</code></a></h2>
 <ul>
 <li><code>documents.id_length</code>: The length of identifiers to generate for documents (default: <code>8</code>).</li>
 <li><code>documents.max_document_length</code>: The maximum amount of bytes a document can be (default: <code>400_000</code>).</li>
 <li><code>documents.max_age</code>: The amount of days documents are stored in the database before they're auto-deleted (default: <code>90</code>). </li>
 </ul>
-<h2><a class="header" href="#example-configuration" id="example-configuration">Example configuration</a></h2>
+<h2 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h2>
 <p>An example configuration is already provided in the Spacebin Spirit repository. It is repeated here for convenience.</p>
 <pre><code class="language-toml">[server]
 host = &quot;127.0.0.1&quot;
@@ -237,10 +253,10 @@ max_age = 90 # in days
         
 
         
-        
+
         
         <script type="text/javascript">
-            window.playpen_copyable = true;
+            window.playground_copyable = true;
         </script>
         
 

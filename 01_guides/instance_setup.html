@@ -5,22 +5,36 @@
         <meta charset="UTF-8">
         <title>Instance Setup - Spacebin Wiki</title>
         
+        
+
+
+        <!-- Custom HTML head -->
+        
+
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
         <link rel="shortcut icon" href="../favicon.png">
+        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
+        
         <link rel="stylesheet" href="../css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
@@ -36,7 +50,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -116,9 +130,11 @@
                     <h1 class="menu-title">Spacebin Wiki</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
                         
                     </div>
                 </div>
@@ -147,20 +163,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#instance-setup" id="instance-setup">Instance Setup</a></h1>
+                        <h1 id="instance-setup"><a class="header" href="#instance-setup">Instance Setup</a></h1>
 <blockquote>
 <p>This guide details the very easy process of setting up a Spacebin server instance.</p>
 </blockquote>
 <p>This is a quick guide on how to setup a basic Spacebin API instance.</p>
 <p>There are two methods for installing the Spacebin Spirit server:</p>
-<h2><a class="header" href="#docker-recommended" id="docker-recommended">Docker (recommended)</a></h2>
+<h2 id="docker-recommended"><a class="header" href="#docker-recommended">Docker (recommended)</a></h2>
 <p><strong>Prerequisites:</strong></p>
 <ul>
 <li><a href="https://www.docker.com/get-started">Docker</a></li>
 <li><a href="https://www.sudo.ws/sudo/"><code>sudo</code></a></li>
 <li>An internet connection.</li>
 </ul>
-<h3><a class="header" href="#1-pull-and-run-the-docker-image" id="1-pull-and-run-the-docker-image">1. Pull and run the Docker image</a></h3>
+<h3 id="1-pull-and-run-the-docker-image"><a class="header" href="#1-pull-and-run-the-docker-image">1. Pull and run the Docker image</a></h3>
 <p>Using this method the installation and execution of a Spirit instance is quite easy, and can be done with two commands:</p>
 <pre><code class="language-sh"># This will pull and run Docker image on Port 80
 $ sudo docker pull spacebinorg/spirit:v0.1.6a
@@ -168,24 +184,24 @@ $ sudo docker run -d -p 80:9000 spacebinorg/spirit:v0.1.6a
 </code></pre>
 <p>You're done. If you want to configure the Instance you're going to have use a somewhat-convoluted method due to a <a href="https://github.com/spacebin-org/spirit/issues/239">parsing issue</a>.</p>
 <p>You need to use a <a href="https://docs.docker.com/storage/volumes/">Docker volume</a> to replace the <code>/opt/spirit/config.toml</code> with a local file containing your instance's configuration. For more information on how to configure consult the <a href="../02_server/config_options.html">Config Options</a> page of this wiki or the <a href="#2-configure-spirit">Configuring Spirit</a> section on this page.</p>
-<h2><a class="header" href="#manual" id="manual">Manual</a></h2>
+<h2 id="manual"><a class="header" href="#manual">Manual</a></h2>
 <ul>
 <li><a href="https://www.golang.org/">Golang</a></li>
 <li><a href="https://magefile.org/">Magefile</a></li>
 <li>An internet connection.</li>
 <li><a href="https://git-scm.com/">Git</a></li>
 </ul>
-<h3><a class="header" href="#1-download-the-git-repository" id="1-download-the-git-repository">1. Download the Git repository</a></h3>
+<h3 id="1-download-the-git-repository"><a class="header" href="#1-download-the-git-repository">1. Download the Git repository</a></h3>
 <p>These two commands will download the Git repository from Github and change into that directory.</p>
 <pre><code class="language-sh">$ git clone https://github.com/spacebin-org/spirit.git
 $ cd spirit
 </code></pre>
-<h3><a class="header" href="#2-configure-spirit" id="2-configure-spirit">2. Configure Spirit</a></h3>
+<h3 id="2-configure-spirit"><a class="header" href="#2-configure-spirit">2. Configure Spirit</a></h3>
 <p>You now need to configure your Spirit instance, so that it may run with settings that work best in your environment.</p>
 <p>A full list of the options available in the <code>config.toml</code> file are listed on the <a href="../02_server/config_options.html">Config Options</a> page. Each setting comes with a default that we at the Spacebin Team find reasonable.</p>
 <p>We're working on creating more in-depth instructions for configuring an instance, but until then you'll have to do with this. Although, we don't think it's very hard to configure Spirit.</p>
 <p>There are currently two options you may use for configuring — environment-based and file-based. However, the only one of these options that currently works is the file-based approach as the other approach currently has a known issue with parsing some <code>_</code> delimited fields.</p>
-<h3><a class="header" href="#3-build-and-run-the-binary" id="3-build-and-run-the-binary">3. Build and run the binary</a></h3>
+<h3 id="3-build-and-run-the-binary"><a class="header" href="#3-build-and-run-the-binary">3. Build and run the binary</a></h3>
 <p>Now, you can try building the actual Spirit program. Since the application is written in Go, for any non-production environment we must build a binary for the program.</p>
 <p>Thanks to our existing build system this can we be quite easily done, provided you've installed and setup <a href="https://magefile.org/">Magefile</a>.</p>
 <p><strong>If you have, run the commands either <code>mage run</code> or <code>mage build</code>.</strong> Either of these commands will build the Spirit program, however with the former option Mage will automatically run the binary after building it.</p>
@@ -233,10 +249,10 @@ $ cd spirit
         
 
         
-        
+
         
         <script type="text/javascript">
-            window.playpen_copyable = true;
+            window.playground_copyable = true;
         </script>
         
 

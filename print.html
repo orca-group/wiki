@@ -7,22 +7,36 @@
         
         <meta name="robots" content="noindex" />
         
+        
+
+
+        <!-- Custom HTML head -->
+        
+
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
         <link rel="shortcut icon" href="favicon.png">
+        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
+        
         <link rel="stylesheet" href="css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
@@ -38,7 +52,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -118,9 +132,11 @@
                     <h1 class="menu-title">Spacebin Wiki</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
                         
                     </div>
                 </div>
@@ -161,38 +177,38 @@
 </blockquote>
 <p><strong>Welcome to the official Spacebin wiki.</strong></p>
 <p>This wiki contains a lot of useful information on Spacebin, all of which is listed on the Sidebar.</p>
-<h2><a class="header" href="#what-is-spacebin" id="what-is-spacebin">What is Spacebin?</a></h2>
+<h2 id="what-is-spacebin"><a class="header" href="#what-is-spacebin">What is Spacebin?</a></h2>
 <p>Spacebin is a highly-reliable pastebin server, built with Golang and Fiber, that's capable of serving notes, documents, code or any other form of text!</p>
-<h3><a class="header" href="#how-spacebin-works" id="how-spacebin-works">How Spacebin works</a></h3>
+<h3 id="how-spacebin-works"><a class="header" href="#how-spacebin-works">How Spacebin works</a></h3>
 <p>When you send a document to a Spacebin server the server generates a unique key for that document and makes the document available to any client accessing the server via the unique key.</p>
 <p>A client can now ask the server for the document by using it's unique key. If the request is performed correctly the server will respond with the document. The client will now display the document's content.</p>
-<h2><a class="header" href="#community" id="community">Community</a></h2>
+<h2 id="community"><a class="header" href="#community">Community</a></h2>
 <p>There's currently only one platform for our community, that is Discord. You can join our Discord with the following link:</p>
 <ul>
 <li><a href="https://discord.com/invite/hXxBtMJ">Discord</a></li>
 </ul>
-<h2><a class="header" href="#contributing" id="contributing">Contributing</a></h2>
+<h2 id="contributing"><a class="header" href="#contributing">Contributing</a></h2>
 <p>If you'd like, you can contribute to the Wiki on Github, View the repository <a href="https://github.com/spacebin-org/wiki">here</a>.</p>
-<h2><a class="header" href="#chapter-01--guides" id="chapter-01--guides">Chapter 01 — Guides</a></h2>
+<h2 id="chapter-01--guides"><a class="header" href="#chapter-01--guides">Chapter 01 — Guides</a></h2>
 <p>This chapter provides various guides on how to use or a maintain a Spacebin instance.</p>
-<h3><a class="header" href="#pages" id="pages">Pages</a></h3>
+<h3 id="pages"><a class="header" href="#pages">Pages</a></h3>
 <ul>
 <li><a href="01_guides/./instance_setup.html">Instance Setup</a></li>
 </ul>
-<h1><a class="header" href="#instance-setup" id="instance-setup">Instance Setup</a></h1>
+<h1 id="instance-setup"><a class="header" href="#instance-setup">Instance Setup</a></h1>
 <blockquote>
 <p>This guide details the very easy process of setting up a Spacebin server instance.</p>
 </blockquote>
 <p>This is a quick guide on how to setup a basic Spacebin API instance.</p>
 <p>There are two methods for installing the Spacebin Spirit server:</p>
-<h2><a class="header" href="#docker-recommended" id="docker-recommended">Docker (recommended)</a></h2>
+<h2 id="docker-recommended"><a class="header" href="#docker-recommended">Docker (recommended)</a></h2>
 <p><strong>Prerequisites:</strong></p>
 <ul>
 <li><a href="https://www.docker.com/get-started">Docker</a></li>
 <li><a href="https://www.sudo.ws/sudo/"><code>sudo</code></a></li>
 <li>An internet connection.</li>
 </ul>
-<h3><a class="header" href="#1-pull-and-run-the-docker-image" id="1-pull-and-run-the-docker-image">1. Pull and run the Docker image</a></h3>
+<h3 id="1-pull-and-run-the-docker-image"><a class="header" href="#1-pull-and-run-the-docker-image">1. Pull and run the Docker image</a></h3>
 <p>Using this method the installation and execution of a Spirit instance is quite easy, and can be done with two commands:</p>
 <pre><code class="language-sh"># This will pull and run Docker image on Port 80
 $ sudo docker pull spacebinorg/spirit:v0.1.6a
@@ -200,38 +216,38 @@ $ sudo docker run -d -p 80:9000 spacebinorg/spirit:v0.1.6a
 </code></pre>
 <p>You're done. If you want to configure the Instance you're going to have use a somewhat-convoluted method due to a <a href="https://github.com/spacebin-org/spirit/issues/239">parsing issue</a>.</p>
 <p>You need to use a <a href="https://docs.docker.com/storage/volumes/">Docker volume</a> to replace the <code>/opt/spirit/config.toml</code> with a local file containing your instance's configuration. For more information on how to configure consult the <a href="01_guides/../02_server/config_options.html">Config Options</a> page of this wiki or the <a href="01_guides/instance_setup.html#2-configure-spirit">Configuring Spirit</a> section on this page.</p>
-<h2><a class="header" href="#manual" id="manual">Manual</a></h2>
+<h2 id="manual"><a class="header" href="#manual">Manual</a></h2>
 <ul>
 <li><a href="https://www.golang.org/">Golang</a></li>
 <li><a href="https://magefile.org/">Magefile</a></li>
 <li>An internet connection.</li>
 <li><a href="https://git-scm.com/">Git</a></li>
 </ul>
-<h3><a class="header" href="#1-download-the-git-repository" id="1-download-the-git-repository">1. Download the Git repository</a></h3>
+<h3 id="1-download-the-git-repository"><a class="header" href="#1-download-the-git-repository">1. Download the Git repository</a></h3>
 <p>These two commands will download the Git repository from Github and change into that directory.</p>
 <pre><code class="language-sh">$ git clone https://github.com/spacebin-org/spirit.git
 $ cd spirit
 </code></pre>
-<h3><a class="header" href="#2-configure-spirit" id="2-configure-spirit">2. Configure Spirit</a></h3>
+<h3 id="2-configure-spirit"><a class="header" href="#2-configure-spirit">2. Configure Spirit</a></h3>
 <p>You now need to configure your Spirit instance, so that it may run with settings that work best in your environment.</p>
 <p>A full list of the options available in the <code>config.toml</code> file are listed on the <a href="01_guides/../02_server/config_options.html">Config Options</a> page. Each setting comes with a default that we at the Spacebin Team find reasonable.</p>
 <p>We're working on creating more in-depth instructions for configuring an instance, but until then you'll have to do with this. Although, we don't think it's very hard to configure Spirit.</p>
 <p>There are currently two options you may use for configuring — environment-based and file-based. However, the only one of these options that currently works is the file-based approach as the other approach currently has a known issue with parsing some <code>_</code> delimited fields.</p>
-<h3><a class="header" href="#3-build-and-run-the-binary" id="3-build-and-run-the-binary">3. Build and run the binary</a></h3>
+<h3 id="3-build-and-run-the-binary"><a class="header" href="#3-build-and-run-the-binary">3. Build and run the binary</a></h3>
 <p>Now, you can try building the actual Spirit program. Since the application is written in Go, for any non-production environment we must build a binary for the program.</p>
 <p>Thanks to our existing build system this can we be quite easily done, provided you've installed and setup <a href="https://magefile.org/">Magefile</a>.</p>
 <p><strong>If you have, run the commands either <code>mage run</code> or <code>mage build</code>.</strong> Either of these commands will build the Spirit program, however with the former option Mage will automatically run the binary after building it.</p>
 <p>If you used instead the latter option you must now execute the <code>spirit</code> binary outputted by the program in the <code>bin/</code> folder of the project. Since each operating system has a different way of running the binary this guide will not go into depth on how to it should be ran.</p>
-<h2><a class="header" href="#chapter-02--server-related-information" id="chapter-02--server-related-information">Chapter 02 — Server-related Information</a></h2>
+<h2 id="chapter-02--server-related-information"><a class="header" href="#chapter-02--server-related-information">Chapter 02 — Server-related Information</a></h2>
 <p>This section contains lots of information surrounding specifically Spacebin API instances.</p>
-<h3><a class="header" href="#pages-1" id="pages-1">Pages</a></h3>
+<h3 id="pages-1"><a class="header" href="#pages-1">Pages</a></h3>
 <ul>
 <li><a href="02_server/./config_options.html">Configuration Options</a></li>
 <li><a href="02_server/./endpoints.html">Available Endpoints</a></li>
 <li><a href="02_server/./public_instances.html">Public Instances</a></li>
 </ul>
-<h1><a class="header" href="#spacebin-server-configuration-options" id="spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
-<h2><a class="header" href="#server" id="server"><code>server</code></a></h2>
+<h1 id="spacebin-server-configuration-options"><a class="header" href="#spacebin-server-configuration-options">Spacebin Server Configuration Options</a></h1>
+<h2 id="server"><a class="header" href="#server"><code>server</code></a></h2>
 <ul>
 <li><code>server.host</code>: Host address to serve on (default: <code>&quot;127.0.0.1&quot;</code>).</li>
 <li><code>server.port</code>: Port number to serve on (default: <code>9000</code>).</li>
@@ -239,23 +255,23 @@ $ cd spirit
 <li><code>server.compress_level</code>: The level of compression to apply to responses. For more information see <a href="https://git.io/J3SRK">the Fiber documentation</a> (default: <code>1</code>).</li>
 <li><code>server.prefork</code>: Whether or not the server should run across multiple processes (default: <code>false</code>).</li>
 </ul>
-<h3><a class="header" href="#serverratelimits" id="serverratelimits"><code>server.ratelimits</code></a></h3>
+<h3 id="serverratelimits"><a class="header" href="#serverratelimits"><code>server.ratelimits</code></a></h3>
 <ul>
 <li><code>server.ratelimits.requests</code>: How many requests to allow per <code>duration</code> (default: <code>80</code>).</li>
 <li><code>server.ratelimits.duration</code>: How many milliseconds until the rate limit is lifted. (default: <code>60_000</code>). </li>
 </ul>
-<h2><a class="header" href="#database" id="database"><code>database</code></a></h2>
+<h2 id="database"><a class="header" href="#database"><code>database</code></a></h2>
 <ul>
 <li><code>database.dialect</code>: The kind of database to connect to. Possible values are <code>mysql</code>, <code>sqlite</code>, or <code>postgresql</code> (default: <code>&quot;sqlite&quot;</code>).</li>
 <li><code>database.connection_uri</code>: The location of the database to connect to (default: <code>&quot;./spacebin.db&quot;</code>). <strong>NOTE:</strong> When connecting to MySQL databases you must pass the <code>parseTime=True</code> option.</li>
 </ul>
-<h2><a class="header" href="#documents" id="documents"><code>documents</code></a></h2>
+<h2 id="documents"><a class="header" href="#documents"><code>documents</code></a></h2>
 <ul>
 <li><code>documents.id_length</code>: The length of identifiers to generate for documents (default: <code>8</code>).</li>
 <li><code>documents.max_document_length</code>: The maximum amount of bytes a document can be (default: <code>400_000</code>).</li>
 <li><code>documents.max_age</code>: The amount of days documents are stored in the database before they're auto-deleted (default: <code>90</code>). </li>
 </ul>
-<h2><a class="header" href="#example-configuration" id="example-configuration">Example configuration</a></h2>
+<h2 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h2>
 <p>An example configuration is already provided in the Spacebin Spirit repository. It is repeated here for convenience.</p>
 <pre><code class="language-toml">[server]
 host = &quot;127.0.0.1&quot;
@@ -277,7 +293,7 @@ id_length = 12
 max_document_length = 400_000
 max_age = 90 # in days
 </code></pre>
-<h1><a class="header" href="#endpoint-documentation" id="endpoint-documentation">Endpoint Documentation</a></h1>
+<h1 id="endpoint-documentation"><a class="header" href="#endpoint-documentation">Endpoint Documentation</a></h1>
 <p>Every endpoint on a standard instance is prefixed by <code>/api/v1</code>.</p>
 <p>All JSON responses on a standard instance follow a common format and are snake_cased.</p>
 <p>On <code>spaceb.in</code> —the Spacebin official instance—, API routes are available at <code>spaceb.in/api/v1</code> (including prefix).</p>
@@ -292,17 +308,17 @@ max_age = 90 # in days
   &quot;error&quot;: &quot;&quot; // Error message.
 }
 </code></pre>
-<h2><a class="header" href="#post-documents" id="post-documents">POST <code>/documents/</code></a></h2>
-<h3><a class="header" href="#request" id="request">Request</a></h3>
+<h2 id="post-documents"><a class="header" href="#post-documents">POST <code>/documents/</code></a></h2>
+<h3 id="request"><a class="header" href="#request">Request</a></h3>
 <pre><code class="language-json">{
   &quot;content&quot;: &quot;...&quot;, // The document's content.
   &quot;extension&quot;: &quot;...&quot;, // The document's file type/extension.
 }
 </code></pre>
-<h4><a class="header" href="#content-field" id="content-field">Content field</a></h4>
+<h4 id="content-field"><a class="header" href="#content-field">Content field</a></h4>
 <p>The value of the <code>content</code> field corresponds to the value of the paste and is required in all requests.</p>
 <p>Additionally, instances set a max length for this value. By default and on <code>spaceb.in</code> the max length is set to 400,000 bytes or ~390KB. Contact your instance's administrator or consult it's documentation to find the value of the max length of documents on it.</p>
-<h4><a class="header" href="#extension-field" id="extension-field">Extension Field</a></h4>
+<h4 id="extension-field"><a class="header" href="#extension-field">Extension Field</a></h4>
 <p>The <code>extension</code> field is used to set the file type of the paste and is required in all requests. Since this field will often be used for syntax highlighting purposes it is important that the value passed accurately corresponds to the format of the text in the file. </p>
 <p>The value of this field must follow a specific value, that being one of the following:</p>
 <ul>
@@ -332,7 +348,7 @@ max_age = 90 # in days
 <li><code>css</code></li>
 </ul>
 <p>Additionally, a value of <code>none</code> may be used for any paste that does not have/want an extension.</p>
-<h3><a class="header" href="#response" id="response">Response</a></h3>
+<h3 id="response"><a class="header" href="#response">Response</a></h3>
 <pre><code class="language-json">{
   &quot;status&quot;: 201,
   &quot;payload&quot;: {
@@ -342,12 +358,12 @@ max_age = 90 # in days
   &quot;error&quot;: &quot;&quot;
 }
 </code></pre>
-<h2><a class="header" href="#get-documentsid" id="get-documentsid">GET <code>/documents/:id/</code></a></h2>
-<h3><a class="header" href="#request-1" id="request-1">Request</a></h3>
+<h2 id="get-documentsid"><a class="header" href="#get-documentsid">GET <code>/documents/:id/</code></a></h2>
+<h3 id="request-1"><a class="header" href="#request-1">Request</a></h3>
 <ul>
 <li><code>:id</code>: The document's unique ID.</li>
 </ul>
-<h3><a class="header" href="#response-1" id="response-1">Response</a></h3>
+<h3 id="response-1"><a class="header" href="#response-1">Response</a></h3>
 <pre><code class="language-json">{
   &quot;status&quot;: 201,
   &quot;payload&quot;: {
@@ -360,20 +376,20 @@ max_age = 90 # in days
   &quot;error&quot;: &quot;&quot;
 }
 </code></pre>
-<h2><a class="header" href="#get-documentsidraw" id="get-documentsidraw">GET <code>/documents/:id/raw</code></a></h2>
-<h3><a class="header" href="#request-2" id="request-2">Request</a></h3>
+<h2 id="get-documentsidraw"><a class="header" href="#get-documentsidraw">GET <code>/documents/:id/raw</code></a></h2>
+<h3 id="request-2"><a class="header" href="#request-2">Request</a></h3>
 <ul>
 <li><code>:id</code>: The document's unique ID.</li>
 </ul>
-<h3><a class="header" href="#response-2" id="response-2">Response</a></h3>
+<h3 id="response-2"><a class="header" href="#response-2">Response</a></h3>
 <p>The response of this endpoint is just the plain text content of the document. If an error occurs while retrieving the document a JSON response will be sent back instead with the <code>error</code> field populated.</p>
-<h1><a class="header" href="#public-instances" id="public-instances">Public Instances</a></h1>
+<h1 id="public-instances"><a class="header" href="#public-instances">Public Instances</a></h1>
 <p>If you have an instance you'd like listed here, please contact the Team via our <a href="https://discord.gg/zsxwgYc">Discord</a> and we'll try to get back to you in a timely matter!</p>
-<h2><a class="header" href="#spacebin" id="spacebin"><code>spaceb.in</code></a></h2>
+<h2 id="spacebin"><a class="header" href="#spacebin"><code>spaceb.in</code></a></h2>
 <p>This is the main public instance and is maintained by the Spacebin team.</p>
 <p>This instance is hosted on <a href="https://junohosting.net"><strong>Juno Hosting's</strong></a> infrastructure in Sacramento, California, United States. Consequently you must conform to all American laws, and all of Juno Hosting's policies. </p>
 <p>All data violating these laws/policies will be swiftly removed from our services after being reported.</p>
-<h3><a class="header" href="#service-rules" id="service-rules">Service Rules</a></h3>
+<h3 id="service-rules"><a class="header" href="#service-rules">Service Rules</a></h3>
 <p><strong>The rules of the service are as follows:</strong></p>
 <ul>
 <li>No illegal, harmful, offensive, or fraudulent content.</li>
@@ -382,19 +398,19 @@ max_age = 90 # in days
 <li>No jail bait.</li>
 </ul>
 <p>Additionally, you of course need to follow any and all laws pertaining to the service host in the United States of America and any pertaining to you and your home nation.</p>
-<h3><a class="header" href="#contacting" id="contacting">Contacting</a></h3>
+<h3 id="contacting"><a class="header" href="#contacting">Contacting</a></h3>
 <p>This instance is operated solely by the Spacebin team. Currently we do not have a team email, so if you need to contact us please email <code>lukewhrit@pm.me</code> (Faster for takedowns.) or <code>hello@puggo.space</code>.</p>
-<h3><a class="header" href="#other-notes" id="other-notes">Other notes</a></h3>
+<h3 id="other-notes"><a class="header" href="#other-notes">Other notes</a></h3>
 <ul>
 <li>All data runs through Cloudflare.</li>
 <li>This service is rate-limited. If you exceed 500 requests in 1 minute you will be blocked from using the service until 1 minute passes.</li>
 <li>Uptime is not guaranteed, we do however make it a goal to keep this instance as stable as possible.</li>
 <li>To access the API use the <code>api</code> route (<code>spaceb.in/api/v1/</code>).</li>
 </ul>
-<h1><a class="header" href="#clients--libraries" id="clients--libraries">Clients &amp; Libraries</a></h1>
+<h1 id="clients--libraries"><a class="header" href="#clients--libraries">Clients &amp; Libraries</a></h1>
 <p>This is a list of official and officially recognized clients and API libraries for use with Spacebin.</p>
 <p>Not all of these clients are developed by the Spacebin Team, any library/client that is will have the author <code>Spacebin Team</code> and will be marked as official.</p>
-<h2><a class="header" href="#clients" id="clients">Clients</a></h2>
+<h2 id="clients"><a class="header" href="#clients">Clients</a></h2>
 <table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Platforms</th><th>Description</th><th>Source</th></tr></thead><tbody>
 <tr><td>Spacebin Team</td><td><code>comet</code></td><td>Yes</td><td><code>linux</code>, <code>win32</code>, <code>macOS</code>, <code>*bsd</code></td><td>Fast and recommended terminal client built in Go.</td><td><a href="https://github.com/spacebin-org/cli">View</a></td></tr>
 <tr><td>Spacebin Team</td><td><code>pulsar</code></td><td>Yes</td><td><code>web</code></td><td>Official web client for Spacebin.</td><td><a href="https://github.com/spacebin-org/pulsar">View</a></td></tr>
@@ -402,20 +418,20 @@ max_age = 90 # in days
 <tr><td>GreatGodApollo</td><td><code>Spacebin-ComputerCraft</code></td><td>No</td><td><code>computercraft</code></td><td></td><td><a href="https://pastebin.com/zdGV8DpG">View</a></td></tr>
 <tr><td>PeachMaster</td><td><code>Spacebin-OpenComputers</code></td><td>No</td><td><code>opencomputers</code></td><td>A Spacebin Client for OpenComputers.</td><td><a href="https://pastebin.com/WN0fh9zC">View</a></td></tr>
 </tbody></table>
-<h2><a class="header" href="#libraries" id="libraries">Libraries</a></h2>
+<h2 id="libraries"><a class="header" href="#libraries">Libraries</a></h2>
 <table><thead><tr><th>Author</th><th>Name</th><th>Official?</th><th>Languages</th><th>Description</th><th>Source</th></tr></thead><tbody>
 <tr><td>GreatGodApollo</td><td><code>gospacebin</code></td><td>No</td><td><code>golang</code></td><td>Golang package for Spacebin API</td><td><a href="https://github.com/greatgodapollo/gospacebin">View</a></td></tr>
 </tbody></table>
-<h2><a class="header" href="#chapter-03--cli-documentation" id="chapter-03--cli-documentation">Chapter 03 — CLI Documentation</a></h2>
+<h2 id="chapter-03--cli-documentation"><a class="header" href="#chapter-03--cli-documentation">Chapter 03 — CLI Documentation</a></h2>
 <p>This section covers the official CLI of Spacebin: <a href="https://github.com/spacebin-org/comet">Comet</a>. Since development on Comet has not yet begun, documentation on the project has not yet been written and this section is empty.</p>
 <p>If you're looking for a CLI to use, you might look over the <a href="03_cli/../clients_and_libraries.html">Clients and Libraries</a> section of this wiki and try one listed there.</p>
-<h3><a class="header" href="#pages-2" id="pages-2">Pages</a></h3>
+<h3 id="pages-2"><a class="header" href="#pages-2">Pages</a></h3>
 <ul>
 <li><a href="03_cli/./install.html">Installation</a></li>
 <li><a href="03_cli/./usage.html">Usage</a></li>
 </ul>
-<h1><a class="header" href="#installing-the-cli" id="installing-the-cli">Installing the CLI</a></h1>
-<h1><a class="header" href="#spacebin-cli-commands" id="spacebin-cli-commands">Spacebin CLI Commands</a></h1>
+<h1 id="installing-the-cli"><a class="header" href="#installing-the-cli">Installing the CLI</a></h1>
+<h1 id="spacebin-cli-commands"><a class="header" href="#spacebin-cli-commands">Spacebin CLI Commands</a></h1>
 
                     </main>
 
@@ -443,10 +459,10 @@ max_age = 90 # in days
         
 
         
-        
+
         
         <script type="text/javascript">
-            window.playpen_copyable = true;
+            window.playground_copyable = true;
         </script>
         
 
