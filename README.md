@@ -15,6 +15,16 @@ $ mdbook build # Builds static files for usage in production environments.
 $ mdbook serve # Rebuilds on file change & runs a local server on port 3000. Useful when developing.
 ```
 
-## Authors
+## `assets/` Folder
 
-* [Luke Whrit <lukewhrit@gmail.com>](https://github.com/lukewhrit)
+The project's asset folder contains all of the graphical resources used by Spacebin in it's projects and official sites.
+
+Like the wiki itself, everything in this folder is available under Creative Commons Attribution-ShareAlike 4.0. For more information see [Licensing & Copyright](#licensing--copyright).
+
+## Contributors
+
+* [Luke Whrit <lukewhrit@pm.me>](https://github.com/lukewhrit)
+
+## Licensing & Copyright
+
+This wiki and all of it's content are available under the Creative Commons Attribution-ShareAlike 4.0 license. A copy of the license can be found in the [`LICENSE`](LICENSE) text file in the root of this repository.

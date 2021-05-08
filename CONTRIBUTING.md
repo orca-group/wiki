@@ -1,3 +1,5 @@
+# Contributing
+
 ## Commit guidelines
 
 Commits all follow the same basic structure:
@@ -19,7 +21,8 @@ A path-like string representing the location of the file.
 * If it's a document it should follow a similar format to `{chapter}/{document_title}`.
 * If it's a document but is not in a chapter, simply call the chapter "book".
 * If it's a file that is not a document just include the file name. 
-* If it's a github workflow file call the chaper "workflows".
+* If it's a github workflow file call the chapter "workflows".
+* If your change is in the `assets/` folder, simply call the chapter "assets".
 
 * `message` is a string detailing what changed. 
 
