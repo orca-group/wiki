@@ -21,6 +21,8 @@ The project's asset folder contains all of the graphical resources used by Space
 
 Like the wiki itself, everything in this folder is available under Creative Commons Attribution-ShareAlike 4.0. For more information see [Licensing & Copyright](#licensing--copyright).
 
+You may have noticed the `github-banner.png` file in the `spacebin-text-logo` folder. This image is to be used for official header images of Spacebin repositories. The only difference between it and other logo images with text is its padding.
+
 ## Contributors
 
 * [Luke Whrit <lukewhrit@pm.me>](https://github.com/lukewhrit)
