@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Spacebin Wiki</a></li><li class="chapter-item expanded "><a href="01_guides/index.html"><strong aria-hidden="true">1.</strong> Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_guides/instance_setup.html"><strong aria-hidden="true">1.1.</strong> Instance Setup</a></li></ol></li><li class="chapter-item expanded "><a href="02_server/index.html"><strong aria-hidden="true">2.</strong> Server-related Information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_server/config_options.html"><strong aria-hidden="true">2.1.</strong> Configuration Options</a></li><li class="chapter-item expanded "><a href="02_server/endpoints.html"><strong aria-hidden="true">2.2.</strong> Endpoint Documentation</a></li><li class="chapter-item expanded "><a href="02_server/public_instances.html"><strong aria-hidden="true">2.3.</strong> Public Instances</a></li></ol></li><li class="chapter-item expanded "><a href="clients_and_libraries.html"><strong aria-hidden="true">3.</strong> Clients and Libraries</a></li><li class="chapter-item expanded "><a href="03_cli/index.html"><strong aria-hidden="true">4.</strong> CLI Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_cli/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="03_cli/usage.html"><strong aria-hidden="true">4.2.</strong> CLI Usage</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">The Spacebin Wiki</a></li><li class="chapter-item expanded "><a href="01_guides/index.html"><strong aria-hidden="true">1.</strong> Guides</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="01_guides/spirit_setup.html"><strong aria-hidden="true">1.1.</strong> Spirit Setup</a></li><li class="chapter-item expanded "><a href="01_guides/pulsar_setup.html"><strong aria-hidden="true">1.2.</strong> Pulsar Setup</a></li></ol></li><li class="chapter-item expanded "><a href="02_server/index.html"><strong aria-hidden="true">2.</strong> Server-related Information</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="02_server/config_options.html"><strong aria-hidden="true">2.1.</strong> Configuration Options</a></li><li class="chapter-item expanded "><a href="02_server/endpoints.html"><strong aria-hidden="true">2.2.</strong> Endpoint Documentation</a></li><li class="chapter-item expanded "><a href="02_server/public_instances.html"><strong aria-hidden="true">2.3.</strong> Public Instances</a></li></ol></li><li class="chapter-item expanded "><a href="clients_and_libraries.html"><strong aria-hidden="true">3.</strong> Clients and Libraries</a></li><li class="chapter-item expanded "><a href="03_cli/index.html"><strong aria-hidden="true">4.</strong> CLI Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="03_cli/install.html"><strong aria-hidden="true">4.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="03_cli/usage.html"><strong aria-hidden="true">4.2.</strong> CLI Usage</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -195,7 +195,7 @@
 <ul>
 <li><a href="01_guides/./instance_setup.html">Instance Setup</a></li>
 </ul>
-<h1 id="instance-setup"><a class="header" href="#instance-setup">Instance Setup</a></h1>
+<h1 id="spirit-instance-setup"><a class="header" href="#spirit-instance-setup">Spirit Instance Setup</a></h1>
 <blockquote>
 <p>This guide details the very easy process of setting up a Spacebin server instance.</p>
 </blockquote>
@@ -215,7 +215,7 @@ $ sudo docker pull spacebinorg/spirit:v0.1.6a
 $ sudo docker run -d -p 80:9000 spacebinorg/spirit:v0.1.6a
 </code></pre>
 <p>You're done. If you want to configure the Instance you're going to have use a somewhat-convoluted method due to a <a href="https://github.com/spacebin-org/spirit/issues/239">parsing issue</a>.</p>
-<p>You need to use a <a href="https://docs.docker.com/storage/volumes/">Docker volume</a> to replace the <code>/opt/spirit/config.toml</code> with a local file containing your instance's configuration. For more information on how to configure consult the <a href="01_guides/../02_server/config_options.html">Config Options</a> page of this wiki or the <a href="01_guides/instance_setup.html#2-configure-spirit">Configuring Spirit</a> section on this page.</p>
+<p>You need to use a <a href="https://docs.docker.com/storage/volumes/">Docker volume</a> to replace the <code>/opt/spirit/config.toml</code> with a local file containing your instance's configuration. For more information on how to configure consult the <a href="01_guides/../02_server/config_options.html">Config Options</a> page of this wiki or the <a href="01_guides/spirit_setup.html#2-configure-spirit">Configuring Spirit</a> section on this page.</p>
 <h2 id="manual"><a class="header" href="#manual">Manual</a></h2>
 <ul>
 <li><a href="https://www.golang.org/">Golang</a></li>
@@ -238,6 +238,33 @@ $ cd spirit
 <p>Thanks to our existing build system this can we be quite easily done, provided you've installed and setup <a href="https://magefile.org/">Magefile</a>.</p>
 <p><strong>If you have, run the commands either <code>mage run</code> or <code>mage build</code>.</strong> Either of these commands will build the Spirit program, however with the former option Mage will automatically run the binary after building it.</p>
 <p>If you used instead the latter option you must now execute the <code>spirit</code> binary outputted by the program in the <code>bin/</code> folder of the project. Since each operating system has a different way of running the binary this guide will not go into depth on how to it should be ran.</p>
+<h1 id="pulsar-setup"><a class="header" href="#pulsar-setup">Pulsar Setup</a></h1>
+<blockquote>
+<p>This guide details the very easy process of setting up an instance of the Pulsar client for Spacebin.</p>
+</blockquote>
+<p>This is a quick guide on how to install and setup an instance of Spacebin's official web client: Pulsar.</p>
+<p>There are two methods for installing Pulsar:</p>
+<h2 id="docker-recommended-1"><a class="header" href="#docker-recommended-1">Docker (recommended)</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li><a href="https://www.docker.com/get-started">Docker</a></li>
+<li><a href="https://www.sudo.ws/sudo/"><code>sudo</code></a></li>
+<li>An internet connection.</li>
+</ul>
+<h3 id="1-pull-and-run-the-docker-image-1"><a class="header" href="#1-pull-and-run-the-docker-image-1">1. Pull and run the Docker image</a></h3>
+<p>Using this method the installation and execution of a Spirit instance is quite easy, and can be done with two commands:</p>
+<pre><code class="language-sh"># This will pull and run Docker image on Port 80
+$ sudo docker pull spacebinorg/pulsar:v1.1.3
+$ sudo docker run -d \
+  --restart=always \
+  --env PULSAR_INSTANCE=&quot;https://spaceb.in/&quot; \
+  -p 3000:80 \
+  spacebinorg/pulsar:v1.1.3
+</code></pre>
+<p>You're done. Pulsar doesn't really have a configuration system, just a few environment variables, they are <code>PORT</code> and <code>PULSAR_INSTANCE</code>.</p>
+<p>Right now, the <code>PULSAR_INSTANCE</code> environment variable is the only required one and is used to set the Spirit instance which Pulsar will serve as the client for.</p>
+<h2 id="manual-1"><a class="header" href="#manual-1">Manual</a></h2>
+<p>Instructions unfinished.</p>
 <h2 id="chapter-02--server-related-information"><a class="header" href="#chapter-02--server-related-information">Chapter 02 — Server-related Information</a></h2>
 <p>This section contains lots of information surrounding specifically Spacebin API instances.</p>
 <h3 id="pages-1"><a class="header" href="#pages-1">Pages</a></h3>
