@@ -1,4 +1,4 @@
-# Instance Setup
+# Spirit Instance Setup
 
 > This guide details the very easy process of setting up a Spacebin server instance.
 
