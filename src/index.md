@@ -22,12 +22,6 @@ When you send a document to a Spacebin server the server generates a unique key 
 
 A client can now ask the server for the document by using it's unique key. If the request is performed correctly the server will respond with the document. The client will now display the document's content.
 
-## Community
-
-There's currently only one platform for our community, that is Discord. You can join our Discord with the following link:
-
-* [Discord](https://discord.com/invite/hXxBtMJ)
-
 ## Contributing
 
 If you'd like, you can contribute to the Wiki on Github, View the repository [here](https://github.com/spacebin-org/wiki).
